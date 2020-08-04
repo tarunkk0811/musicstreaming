@@ -27,9 +27,9 @@ public class OtpCheck extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String url="jdbc:mysql://localhost:3306/musicstreaming";
-	     String dbuname="root";
-	     String dbpass="root";
+		 String url="postgres://wpuztkpsfnclqf:c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a@ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
+	     String dbuname="wpuztkpsfnclqf";
+	     String dbpass="c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a";
 	     String otp=request.getParameter("otp");
 	     String email=request.getParameter("username");
 		
