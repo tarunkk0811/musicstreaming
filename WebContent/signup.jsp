@@ -29,10 +29,10 @@
 
 <link rel="stylesheet" href="css/login-css.css">
 <meta charset="ISO-8859-1">
+<meta name="theme-color" content="#343a40">
 <title>Signup here</title>
 </head>
 <body>
-
 
 
 <%

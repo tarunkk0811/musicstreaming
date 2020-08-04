@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="theme-color" content="#343a40">
 <title>Official Admin</title>
 <meta
 name="viewport"
