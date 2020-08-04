@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp WebContent/login.jsp
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/MusicStreaming-0.0.1-SNAPSHOT.war

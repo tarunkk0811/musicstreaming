@@ -49,10 +49,7 @@ public class SendMailer {
 			System.out.print("Failed");
 			e.printStackTrace();
 		}
-		
 	
-		
-		
 		
 	}
 }  
