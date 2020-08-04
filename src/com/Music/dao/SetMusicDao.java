@@ -47,7 +47,7 @@ public class SetMusicDao {
 		  
 		  	lang_count++;
 		  	
-		  	PreparedStatement insert_lang_stmt = con.prepareStatement("insert into languages(LID,LNAME) value(?,?)");
+		  	PreparedStatement insert_lang_stmt = con.prepareStatement("insert into languages(LID,LNAME) values(?,?)");
 			
 			lid="L"+lang_count;
 			
