@@ -28,8 +28,8 @@ public class Signup extends HttpServlet {
 		String name=request.getParameter("name");
 		String email=request.getParameter("username");
 		String password=request.getParameter("password");
-		System.out.print(email+password);
-		res=login.checkUser(email, password);
+		
+		res=login.checkMail(email);
 		
 		
 //		System.out.print("data: "+name+email+password);
@@ -41,7 +41,7 @@ public class Signup extends HttpServlet {
 		else {
 			int n = 10000 + new Random().nextInt(90000);
 			String otp = String.valueOf(n);
-			System.out.print(otp);
+			
 			SendMailer.sendMail(email, "OTP", otp);
 			try {
 				login.setUser(name, email, password, otp);

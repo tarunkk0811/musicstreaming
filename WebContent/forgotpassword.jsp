@@ -98,7 +98,7 @@ else
     
    
   <p class="p-container" style="width:300px;" id="button">
-    <input type="submit" form=""  name="Login" id="go" value="Send Otp"/>
+    <input type="submit" form=""  name="Login" id="forgotgo" value="Send Otp"/>
     </p>
     
     <center>
@@ -107,110 +107,7 @@ else
      
 </form>
 
-<script>
-
-function sendotp(){
-	
-	
-	//if(document.getElementById('name').innerText!="" &&  (document.getElementById('email').innerText!="") && (document.getElementById('password').innerText!="")){
-		
-	//	document.getElementById('accesspanel').style.height="235px";
-	
-		document.getElementById('ins').innerHTML="<button form='' id='resendotp'>Resend Otp</button>";
-		
-		document.getElementById('otp').style.display="block";
-		
-		document.getElementById('button').innerHTML= "<input type='submit' form='' name='verify' id='verify' value='Confirm Otp'>";
-		
-		document.getElementById('message').innerHTML="";
-		
-		document.getElementById('nwuser').innerHTML="";
-		
-		document.getElementById('accesspanel').style.height="300px";
-	
-	//}
-}
-
-
-function newpassword(){
-	document.getElementById('email').style.display="none";
-	document.getElementById('otp').style.display="none";
-	document.getElementById('new').style.display="block";
-	document.getElementById('con').style.display="block";
-	document.getElementById('button').innerHTML= "<input type='submit' name='verify' id='verify' value='Change Password'>";
-	document.getElementById('message').innerHTML="";
-}
-
-
-$(document).on("click", "#resendotp", function(e) {
-	document.getElementById('message').innerHTML="";
-    $.ajax({
-    	method: 'post',
-        url: 'ForgotPassword',
-        data: {
-            username:document.getElementById("emailid").value
-        },
-        success: function(responseText) {
-           sendotp();
-           $("#message").html("Otp sent");
-        },
-        error: function () {
-        	$("#message").html("failed to send otp");
-        
-          }
-    });
-
-
-});
-
-
-
-$(document).on("click", "#go", function(e) {
-	document.getElementById('message').innerHTML="";
-    $.ajax({
-    	method: 'post',
-        url: 'ForgotPassword',
-        data: {
-            username:document.getElementById("emailid").value
-        },
-        success: function(responseText) {
-           sendotp();
-           $("#message").html("otp sent");
-        },
-        error: function () {
-        	$("#message").html("You are not a User please SignUp");
-        
-          }
-    });
-
-
-});
-
-
-$(document).on("click", "#verify", function(e) {
-	document.getElementById('message').innerHTML="";
-	
-    $.ajax({
-    	method: 'post',
-        url: 'VerifyUser',
-        data: {
-            username:document.getElementById("emailid").value,
-            otp:document.getElementById("otpid").value
-        },
-        success: function(responseText) {
-        	document.getElementById('ins').innerHTML= "";
-        	newpassword();
-        },
-        error: function () {
-        	$("#message").html("Incorrect Otp");
-        
-          }
-    });
-
-});
-
-
-</script>
+<script src='auth.js'></script>
 
 
 </body>

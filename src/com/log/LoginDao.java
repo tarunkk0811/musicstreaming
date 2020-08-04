@@ -33,13 +33,13 @@ public class LoginDao {
 		ResultSet rs = checkstmt.executeQuery();
 		while(rs.next()){
 			if(rs.getBoolean(2)==false) {
-				System.out.print("setting"+otp);
+				
 				String update="update users set otp=? where email=?";
 				PreparedStatement updatestmt = con.prepareStatement(update);
 				updatestmt.setString(1,otp);
 				updatestmt.setString(2,email);
 				updatestmt.executeUpdate();
-				System.out.print("Updated");
+				
 			}
 			
 			return user;
@@ -115,6 +115,35 @@ public class LoginDao {
     	
     }
     
+    public String[] checkMail(String email) {
+
+    	String user[]= {"","",""};
+    
+    	try {	
+    		Class.forName("org.postgresql.Driver");
+    		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
+        	String check="select uid,name,role,status from users where email=?";
+    		PreparedStatement checkstmt = con.prepareStatement(check);
+    		checkstmt.setString(1,email);
+    		ResultSet rs = checkstmt.executeQuery();
+    		while(rs.next()){
+    			if(rs.getBoolean(4)) {	
+	    			user[0]=String.valueOf(rs.getInt(1));
+	    			user[1]=rs.getString(2).toString();
+	    			user[2]=rs.getString(3).toString();
+	    			return user;	
+    			}
+            }
+    		
+    	}
+    	catch (SQLException | ClassNotFoundException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	
+    	return user;
+    	
+    }
         
     private static String get_SHA_256_SecurePassword(String passwordToHash)
     {
@@ -178,17 +207,17 @@ public class LoginDao {
     		Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
     		String securedpass= get_SHA_256_SecurePassword(pass);
-    		System.out.print(pass);
+    		
     		String update="update users set password=? where email=?";
     		PreparedStatement updatestmt = con.prepareStatement(update);
     		
     		updatestmt.setString(1, securedpass);
     		updatestmt.setString(2, email);
-    		System.out.print(updatestmt);
+    		
     		int rs=updatestmt.executeUpdate();
     		
     		if(rs>0){
-    			System.out.print("pass reset");
+    			
     			return true;
             }
     		
@@ -197,10 +226,12 @@ public class LoginDao {
     		e.printStackTrace();
     	}
     	
-    	System.out.print("pass not reset");
+    	
     	return false;
     }
     
+ 
+ 
 
 	
 }

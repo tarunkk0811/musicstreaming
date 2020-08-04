@@ -25,13 +25,13 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
-    
 
 <link rel="stylesheet" href="css/login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">
 <title>Signup here</title>
 </head>
+
 <body>
 
 
@@ -102,92 +102,8 @@ else
 </form>
 
 
-<script>
-function sendotp(){
-	
-		document.getElementById('accesspanel').style.height="235px";
-		
-		document.getElementById('name').style.display="none";
-	
-		document.getElementById('email').style.display="none";
-	
-		document.getElementById('password').style.display="none";
+<script src='auth.js'></script>
 
-		document.getElementById('ins').innerHTML="<button form='' id='resendotp'>Resend Otp</button>";
-		
-		document.getElementById('otp').style.display="block";
-		
-		document.getElementById('button').innerHTML= "<input type='submit' form='' name='verify' id='verify' value='Confirm Otp'>";
-		
-		document.getElementById('message').innerText="";
-	
-	}
-
-
-
-$(document).on("click", "#go", function() {
-	
-
-    $.ajax({
-    	method: 'post',
-        url: 'Signup',
-        data: {
-            name: document.getElementById("nameid").value,
-            username:document.getElementById("emailid").value,
-            password:document.getElementById("passwordid").value
-        },
-        success: function(responseText) {
-           sendotp();
-        },
-        error: function () {
-        	$("#message").html("You are Already a User please Login");
-           
-          }
-    });
-});
-
-
-$(document).on("click", "#resendotp", function() {
-
-    $.ajax({
-    	method: 'post',
-        url: 'Signup',
-        data: {
-        	name: document.getElementById("nameid").value,
-            username:document.getElementById("emailid").value,
-            password:document.getElementById("passwordid").value
-        },
-        success: function(responseText) {
-        	$("#message").html("Otp Sent Successfully");
-        }
-    });
-
-});
-
-
-$(document).on("click", "#verify", function() {
-    $.ajax({
-    	method: 'post',
-        url: 'OtpCheck',
-        data: {
-            username:document.getElementById("emailid").value,
-            otp:document.getElementById("otpid").value
-        },
-        success: function(responseText) {
-           $('#submitform').click();
-        },
-        error: function () {
-        	$("#message").html("Incorrect Otp");
-           
-          }
-    });
-});
-
-
-
-
-
-</script>
 
 
 </body>
