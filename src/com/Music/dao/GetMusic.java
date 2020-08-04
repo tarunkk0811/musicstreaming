@@ -263,7 +263,7 @@ public class GetMusic {
 			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
-			String album_res_query = "select aid,aname,poster,lid from albums where aname like '%"+query+"%'";
+			String album_res_query = "select aid,aname,poster,lid from albums where aname ilike '%"+query+"%'";
 			
 			
 			PreparedStatement stmt = con.prepareStatement(album_res_query);
@@ -286,7 +286,7 @@ public class GetMusic {
 			}
 			
 			
-			String songs_res_query = "select a.aid,sname,aname,poster,a.lid from albums a,songs s where a.aid=s.aid and sname like '%"+query+"%'";
+			String songs_res_query = "select a.aid,sname,aname,poster,a.lid from albums a,songs s where a.aid=s.aid and sname ilike '%"+query+"%'";
 			
 			PreparedStatement song_stmt = con.prepareStatement(songs_res_query);
 			
