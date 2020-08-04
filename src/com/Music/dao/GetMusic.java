@@ -118,7 +118,7 @@ public class GetMusic {
 	
 	
 	
-	public String getRecents(String uid) {
+	public String getRecents(int uid) {
 		
 		String s="";
 		
@@ -130,7 +130,7 @@ public class GetMusic {
 			
 			PreparedStatement stmt = con.prepareStatement(query);
 			
-			stmt.setString(1,uid);	
+			stmt.setInt(1,uid);	
 			
 			ResultSet res = stmt.executeQuery();
 				while(res.next()) {
@@ -213,7 +213,7 @@ public class GetMusic {
                     "</div>"+
                     "<ul class='album-cards "+lid+"' >";
 				
-				String albumquery="select songs.aid,albums.aname,albums.poster,count(*) as albcount from songs,recents,albums where albums.aid=songs.aid and songs.sid=recents.sid and songs.lid=? group by aid order by songs.lid,albcount desc limit 5";
+				String albumquery="select songs.aid,albums.aname,albums.poster,count(*) as albcount from songs,recents,albums where albums.aid=songs.aid and songs.sid=recents.sid and songs.lid=? group by songs.aid order by songs.lid,albcount desc limit 5";
 				PreparedStatement albumstmt = con.prepareStatement(albumquery);
 				albumstmt.setString(1,lid);
 				ResultSet albres = albumstmt.executeQuery();
