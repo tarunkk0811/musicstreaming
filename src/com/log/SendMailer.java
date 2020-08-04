@@ -14,8 +14,8 @@ public class SendMailer {
 	public static void sendMail(String tomail,String subject,String otp){  
 	 
   
-		final String uname="tarun.never.quit@gmail.com";
-		final String pass="9100193405";
+		final String uname="musicstreamer.india@gmail.com";
+		final String pass="Bktktb@123";
 		Properties props=new Properties();
 		props.put("mail.smtp.auth",true);
 		props.put("mail.smtp.starttls.enable",true);
