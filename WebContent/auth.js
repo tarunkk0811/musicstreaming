@@ -1,4 +1,27 @@
-//signup 
+//signup
+var form = document.forms[0];
+
+
+let loadingBtn = (load_msg) => {
+            let btn = form.getElementsByTagName('button')[0];
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i> ' + load_msg + '...';
+            btn.style.opacity = 0.5;
+            btn.style.cursor = "not-allowed";
+        }
+let validateEmail = () => {
+            const email = form["username"].value;
+            if (email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+                return true;
+            else
+                return false
+        };
+let validatePassword = () => {
+            const password = form["password"].value;
+            return password.length >= 8 ? true : false;
+        } 
+
+
 
 function sendotp(){
 	
@@ -14,7 +37,7 @@ function sendotp(){
 		
 		document.getElementById('otp').style.display="block";
 		
-		document.getElementById('button').innerHTML= "<input type='submit' form='' name='verify' id='verify' value='Confirm Otp'>";
+		document.getElementById('button').innerHTML= "<button type='submit' form='' name='verify' id='verify' value='Confirm Otp'>Confitm Otp</button>";
 		
 		document.getElementById('message').innerText="";
 	
@@ -23,7 +46,8 @@ function sendotp(){
 
 
 $(document).on("click", "#go", function() {
-	
+	if(validateEmail()&& validatePassword()){
+		loadingBtn("Sending Otp");
     $.ajax({
     	method: 'post',
         url: 'Signup',
@@ -33,6 +57,7 @@ $(document).on("click", "#go", function() {
             password:document.getElementById("passwordid").value
         },
         success: function(responseText) {
+			
            sendotp();
         },
         error: function () {
@@ -40,6 +65,11 @@ $(document).on("click", "#go", function() {
            
           }
     });
+}
+else{
+	document.getElementById("message").innerText="Invalid Email or Password";
+}
+
 });
 
 
@@ -87,13 +117,13 @@ function forgotsendotp(){
 	
 	//if(document.getElementById('name').innerText!="" &&  (document.getElementById('email').innerText!="") && (document.getElementById('password').innerText!="")){
 		
-	//	document.getElementById('accesspanel').style.height="235px";
+		document.getElementById('accesspanel').style.height="240px";
 	
-		document.getElementById('ins').innerHTML="<button form='' id='forgotresendotp'>Resend Otp</button>";
+		document.getElementById('ins').innerHTML="<button form='' style='height:auto;width:auto; background-color:transparent;border:0;color:#ffffff;';  id='forgotresendotp'>Resend Otp</button>";
 		
 		document.getElementById('otp').style.display="block";
 		
-		document.getElementById('button').innerHTML= "<input type='submit' form='' name='verify' id='forgotverify' value='Confirm Otp'>";
+		document.getElementById('button').innerHTML= "<button type='submit' form='' name='verify' id='forgotverify' value='Confirm Otp'>Confirm Otp</button>";
 		
 		document.getElementById('message').innerHTML="";
 		
@@ -110,7 +140,7 @@ function newpassword(){
 	document.getElementById('otp').style.display="none";
 	document.getElementById('new').style.display="block";
 	document.getElementById('con').style.display="block";
-	document.getElementById('button').innerHTML= "<input type='submit' name='verify' id='forgotverify' value='Change Password'>";
+	document.getElementById('button').innerHTML= "<button type='submit' name='verify' id='forgotverify' value='Change Password'>Change Password</button>";
 	document.getElementById('message').innerHTML="";
 }
 
@@ -139,6 +169,8 @@ $(document).on("click", "#forgotresendotp", function(e) {
 
 
 $(document).on("click", "#forgotgo", function(e) {
+	if(validateEmail()){
+	loadingBtn("Sending Otp");
 	document.getElementById('message').innerHTML="";
     $.ajax({
     	method: 'post',
@@ -155,7 +187,10 @@ $(document).on("click", "#forgotgo", function(e) {
         
           }
     });
-
+}
+else{
+	document.getElementById("message").innerText="Invalid Email";
+}
 
 });
 
@@ -182,3 +217,11 @@ $(document).on("click", "#forgotverify", function(e) {
 
 });
 
+//login
+
+
+document.getElementById("logingo").addEventListener('click',function(){
+	loadingBtn("Authenticating");
+	document.forms[0].submit();
+	
+})

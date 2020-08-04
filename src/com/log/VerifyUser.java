@@ -73,7 +73,7 @@ public class VerifyUser extends HttpServlet {
 		else {
 			
 			try {	
-	    		Class.forName("com.mysql.cj.jdbc.Driver");
+				Class.forName("org.postgresql.Driver");
 	    		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 	        	String verifyotp="select uid from users where email=? and otp=?";
 	    		PreparedStatement verify_otp_stmt = con.prepareStatement(verifyotp);

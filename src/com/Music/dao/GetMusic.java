@@ -277,7 +277,7 @@ public class GetMusic {
 				String albname = albnamee.substring(0, 1).toUpperCase() + albnamee.substring(1).toLowerCase();
 				String posurl=alb_res.getString(3);
 				String lid=alb_res.getString(4);
-				System.out.print(lid);
+				
 				results+="<div> "
 						+ "<button name='"+albname+"' class='album-btn "+lid+"' id='albumbutton' value='"+aid+"'>"+ albname+"</button>"
 						+ "  <input id='"+aid+"' type='hidden' value='"+posurl+"' />"

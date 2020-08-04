@@ -28,7 +28,7 @@
     
     
 
-<link rel="stylesheet" href="css/login-css.css">
+<link rel="stylesheet" href="login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">
 <title>Login</title>
@@ -58,7 +58,7 @@ else
 
 
     <p>
-      <input type="text" required name="username" id="email" placeholder="Email address">
+      <input type="text" required name="username" id="email" placeholder="Email address" autofocus>
     </p>
 
     <p>
@@ -81,7 +81,11 @@ else
    %>  
    </p>
   <p class="p-container" style="width:300px;" id="button">
-    <input type="submit" name="Login" id="go" value="Login"/>
+   
+    <!-- <input type="submit" name="Login" id="go" value="Login"/> -->
+   <button type="submit" name="Login" id="logingo" value="Login">
+                Login
+            </button>
     
    <center>
  <p class="ins">New to Music Streamer? <a href="signup.jsp">SignUp</a> </p>
@@ -90,6 +94,7 @@ else
 
 </form>
 
+<script src='auth.js'></script>
 
 </body>
 </html>

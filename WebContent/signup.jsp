@@ -26,7 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
 
-<link rel="stylesheet" href="css/login-css.css">
+<link rel="stylesheet" href="login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">
 <title>Signup here</title>
@@ -60,7 +60,7 @@ else
 	</p>
 	
   	<p id='name'>
-      <input type='text' required name='name' id='nameid' placeholder='Name'>
+      <input type='text' required name='name' id='nameid' placeholder='Name' autofocus>
     </p>
     
     <p id='email'>
@@ -89,7 +89,10 @@ else
     
    
   <p class="p-container" style="width:300px;" id="button">
-    <input type="submit" form=""  name="Login" id="go" value="Send Otp"/>
+   <!--  <input type="submit" form=""  name="Login" id="go" value="Send Otp"/> -->
+   <button type="submit" form="" name="Login" id="go" value="Send Otp">
+                Send Otp
+            </button>
     </p>
     
    

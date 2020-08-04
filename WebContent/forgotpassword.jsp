@@ -28,7 +28,7 @@
     
     
 
-<link rel="stylesheet" href="css/login-css.css">
+<link rel="stylesheet" href="login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">
 <title>Signup here</title>
@@ -59,7 +59,7 @@ else
 
 	<br><br>
     <p id='email'>
-      <input autocomplete="off" type="text" required name="email" id="emailid" placeholder="Email address">
+      <input autocomplete="off" type="text" required name="username" id="emailid" placeholder="Email address" autofocus>
     </p>
    
     <p id='new' style="display:none;">
@@ -75,7 +75,7 @@ else
       <input type="password" required name="otp" id="otpid" placeholder="Otp">
     </p>
     
-    <p id='ins'>	
+    <p id='ins' style="text-align:center;">	
     </p>
   </div>
   
@@ -98,7 +98,11 @@ else
     
    
   <p class="p-container" style="width:300px;" id="button">
-    <input type="submit" form=""  name="Login" id="forgotgo" value="Send Otp"/>
+   <!--  <input type="submit" form=""  name="Login" id="forgotgo" value="Send Otp"/> -->
+    
+    <button type="submit" name="Login"  form=""  id="forgotgo" value="Send Otp">
+                Send Otp
+            </button>
     </p>
     
     <center>
