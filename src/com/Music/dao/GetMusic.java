@@ -8,17 +8,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class GetMusic {
-	 String url="postgres://wpuztkpsfnclqf:c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a@ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
+	 String url="jdbc:postgresql://ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
      String dbuname="wpuztkpsfnclqf";
      String dbpass="c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a";
     
+     
 	public String getLanguages() {
 		String s="<option value=\"\" disabled selected>\r\n" + 
 				"                        Language\r\n" + 
 				"                    </option>";
 		
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			String query="Select lid,lname from languages";
 			Statement stmt = con.createStatement();
@@ -44,7 +45,7 @@ public class GetMusic {
 		String s="";
 		
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
 			String query="Select AID,ANAME,POSTER from albums where LID=? order by aname";
@@ -83,7 +84,7 @@ public class GetMusic {
 		String s="";
 		//System.out.print("Entered songs");
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
 			String query="Select sid,sname,song_url from songs where aid=?";
@@ -122,7 +123,7 @@ public class GetMusic {
 		String s="";
 		
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
 			String query="select songs.sid,songs.sname,songs.song_url from songs,recents where  songs.sid = recents.sid and recents.uid=? order by recents.rid desc";
@@ -162,7 +163,7 @@ public class GetMusic {
 		String s="";
 		
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
 			String query="select songs.sid,songs.sname,songs.song_url from songs right outer join (select sid,count(*) as count from recents group by sid order by count desc limit 10) t2 on songs.sid=t2.sid";
@@ -196,7 +197,7 @@ public class GetMusic {
 		String s="";
 		
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
 			String query="select lid,lname from languages";
@@ -259,7 +260,7 @@ public class GetMusic {
 		
 		
 		try {	
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
 			String album_res_query = "select aid,aname,poster,lid from albums where aname like '%"+query+"%'";

@@ -7,11 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SetMusicDao {
-	
-	 String url="postgres://wpuztkpsfnclqf:c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a@ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
+	 String url="jdbc:postgresql://ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
      String dbuname="wpuztkpsfnclqf";
      String dbpass="c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a";
-     
+    
+      
 	  
 	 public String setLanguage(String language){
 		  
@@ -20,7 +20,7 @@ public class SetMusicDao {
 		  int lang_count=0;
 		  
 		  try {
-		  Class.forName("com.mysql.cj.jdbc.Driver");
+		  Class.forName("org.postgresql.Driver");
 		  
 		  Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 		  
@@ -80,7 +80,7 @@ public class SetMusicDao {
 		  
 		  try {
 			  
-		  Class.forName("com.mysql.cj.jdbc.Driver");
+		  Class.forName("org.postgresql.Driver");
 		  
 		  Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 		  
@@ -155,7 +155,7 @@ public class SetMusicDao {
 		 	
 		 	try {
 		 	
-	 		Class.forName("com.mysql.cj.jdbc.Driver");
+	 		Class.forName("org.postgresql.Driver");
 				  
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 				   		
@@ -210,7 +210,7 @@ public class SetMusicDao {
 	 public Boolean setRecents(String uid,String sid) {
 		 try {
 			 	
-		 		Class.forName("com.mysql.cj.jdbc.Driver");
+			 	Class.forName("org.postgresql.Driver");
 					  
 				Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 				

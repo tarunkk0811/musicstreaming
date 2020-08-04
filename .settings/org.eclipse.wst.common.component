@@ -13,7 +13,7 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="mysql-connector-java-8.0.21.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/HP/Downloads/mysql-connector-java-8.0.21/mysql-connector-java-8.0.21/mysql-connector-java-8.0.21.jar">
+        <dependent-module archiveName="postgresql-42.2.14.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/HP/Downloads/postgresql-42.2.14.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
                                 

@@ -26,10 +26,10 @@ public class VerifyUser extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url="jdbc:mysql://db4free.net:3306/mydatabasetarun";
-	     String dbuname="usernametarun";
-	     String dbpass="passwordtarun";
-	 	String role="user";
+		 String url="jdbc:postgresql://ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
+		 String dbuname="wpuztkpsfnclqf";
+		 String dbpass="c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a";
+	 	 String role="user";
 		 String otp=request.getParameter("otp");
 		 String uname=request.getParameter("name");
 		 String email=request.getParameter("username");
@@ -38,14 +38,14 @@ public class VerifyUser extends HttpServlet {
 //		System.out.print(otp+name+email+password);
 		if(uname!=null && password!=null) {
 		try {	
-    		Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
         	String verifyotp="select uid from users where email=? and otp=?";
     		PreparedStatement verify_otp_stmt = con.prepareStatement(verifyotp);
     		verify_otp_stmt.setString(1, email);
     		verify_otp_stmt.setString(2, otp);
     		
-    		String update="update users set status=1 where email=?";
+    		String update="update users set status=true where email=?";
     		PreparedStatement update_stmt = con.prepareStatement(update);
     		ResultSet res = verify_otp_stmt.executeQuery();
     		if(res.next()) {

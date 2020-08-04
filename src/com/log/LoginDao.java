@@ -11,9 +11,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
 public class LoginDao {
-	String url="jdbc:mysql://db4free.net:3306/mydatabasetarun";
-    String dbuname="usernametarun";
-    String dbpass="passwordtarun";
+	   String url="jdbc:postgresql://ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
+	     String dbuname="wpuztkpsfnclqf";
+	     String dbpass="c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a";
+	    
     String role="user";
      
     public String[] setUser(String name,String email,String password,String otp) throws NoSuchAlgorithmException, NoSuchProviderException {
@@ -24,7 +25,7 @@ public class LoginDao {
         
 	try {	
 		
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName("org.postgresql.Driver");
 		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 		String check="select email,status from users where email=?";
 		PreparedStatement checkstmt = con.prepareStatement(check);
@@ -81,11 +82,11 @@ public class LoginDao {
   }
      
     public String[] checkUser(String email,String upassword) {
-//    	System.out.print("data: "+email+upassword);
+
     	String user[]= {"","",""};
     
     	try {	
-    		Class.forName("com.mysql.cj.jdbc.Driver");
+    		Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
     		
         	String password=  get_SHA_256_SecurePassword(upassword);
@@ -138,7 +139,7 @@ public class LoginDao {
     public boolean otpToEmail(String email) {
     	
     	try {	
-    		Class.forName("com.mysql.cj.jdbc.Driver");
+    		Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
     		
         	String check="select status from users where email=? ";
@@ -174,7 +175,7 @@ public class LoginDao {
  public boolean changePassword(String email,String pass) {
     	
     	try {	
-    		Class.forName("com.mysql.cj.jdbc.Driver");
+    		Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
     		String securedpass= get_SHA_256_SecurePassword(pass);
     		System.out.print(pass);
