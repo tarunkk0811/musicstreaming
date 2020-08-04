@@ -11,10 +11,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
 public class LoginDao {
-	 String url="postgres://wpuztkpsfnclqf:c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a@ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
-     String dbuname="wpuztkpsfnclqf";
-     String dbpass="c593ec65fb4a4e9d2729e634784081a9420f37705d3bfca52ded291661f2787a";
-     String role="user";
+	String url="jdbc:mysql://db4free.net:3306/mydatabasetarun";
+    String dbuname="usernametarun";
+    String dbpass="passwordtarun";
+    String role="user";
      
     public String[] setUser(String name,String email,String password,String otp) throws NoSuchAlgorithmException, NoSuchProviderException {
     	String user[]= {"","",""};
