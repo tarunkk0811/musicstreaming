@@ -213,7 +213,7 @@ public class GetMusic {
                     "</div>"+
                     "<ul class='album-cards "+lid+"' >";
 				
-				String albumquery="select songs.aid,albums.aname,albums.poster,count(*) as albcount from songs,recents,albums where albums.aid=songs.aid and songs.sid=recents.sid and songs.lid=? group by songs.aid order by songs.lid,albcount desc limit 5";
+				String albumquery="select albums.aid,albums.aname,albums.poster,count(*) as albcount from songs,recents,albums where albums.aid=songs.aid and songs.sid=recents.sid and songs.lid=?	group by albums.aid order by albcount desc limit 5";
 				PreparedStatement albumstmt = con.prepareStatement(albumquery);
 				albumstmt.setString(1,lid);
 				ResultSet albres = albumstmt.executeQuery();
