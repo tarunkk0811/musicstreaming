@@ -24,7 +24,7 @@ public class SetMusicDao {
 		  
 		  Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 		  
-		  String lang_search_query="select * from languages order by created_on";
+		  String lang_search_query="select * from languages order by sno";
 		  
 		  PreparedStatement lang_search_stmt = con.prepareStatement(lang_search_query);
 		  
@@ -99,7 +99,7 @@ public class SetMusicDao {
 		  
 		  Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 		  
-		 String album_search_query = "Select * from albums order by created_on";
+		 String album_search_query = "Select * from albums order by sno";
 		 
 		 PreparedStatement album_search_stmt = con.prepareStatement(album_search_query);
 		 
@@ -189,7 +189,7 @@ public class SetMusicDao {
 				  
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 				   		
-			String count_songs_query="select * from songs order by created_on";
+			String count_songs_query="select * from songs order by sno";
 			
 			PreparedStatement statement = con.prepareStatement(count_songs_query);
 			
