@@ -15,8 +15,7 @@ public class SetMusicDao {
 		  
 		  String lid="";
 		  String lastlid="";
-		  int r_e=0;
-		  
+		  int r_e=0;		  
 		  int lang_count=0;
 		  
 		  try {
@@ -130,7 +129,7 @@ public class SetMusicDao {
 				album_count+=1;
 		  }
 		String album_insert_query = "insert into albums(AID,LID,ANAME,POSTER) values(?,?,?,?)";
-		 PreparedStatement album_insert_stmt = con.prepareStatement(album_insert_query);
+		PreparedStatement album_insert_stmt = con.prepareStatement(album_insert_query);
 		
 		album_insert_stmt.setString(2,lid);
 		
