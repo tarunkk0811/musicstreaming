@@ -1,5 +1,6 @@
 //signup
 var form = document.forms[0];
+var timer = 30;
 
 
 let loadingBtn = (load_msg) => {
@@ -24,17 +25,34 @@ let validatePassword = () => {
 
 
 function sendotp(){
-	
-		document.getElementById('accesspanel').style.height="235px";
+		
+		
+		let countDownResend = setInterval(()=>{
+   		 let tag = document.getElementsByTagName('strong')[0];
+  		 timer--; 
+		 tag.innerText = timer;
+  		 
+ 		   if(timer === 0){
+ 		   clearInterval(countDownResend);
+			document.getElementById("resendotp").disabled=false;
+			document.getElementById("resendotp").style.opacity=1;
+			timer=30;
+			}
+			},1000)
+
+		
+		document.getElementById('accesspanel').style.height="260px";
 		
 		document.getElementById('name').style.display="none";
 	
 		document.getElementById('email').style.display="none";
 	
 		document.getElementById('password').style.display="none";
-
-		document.getElementById('ins').innerHTML="<button form='' id='resendotp'>Resend Otp</button>";
 		
+		document.getElementById('ins').style.display="none";
+
+		document.getElementById('insbtn').innerHTML="Try again in <strong>30 </strong> seconds: <button form='' style='margin: 0; opacity:0.4; width: auto; height: auto;margin-top: 0; margin-bottom: 5px; background: transparent; color: white;' id='resendotp' disabled>Resend Otp</button>";
+		  
 		document.getElementById('otp').style.display="block";
 		
 		document.getElementById('button').innerHTML= "<button type='submit' form='' name='verify' id='verify' value='Confirm Otp'>Confitm Otp</button>";
@@ -67,6 +85,8 @@ $(document).on("click", "#go", function() {
     });
 }
 else{
+	document.getElementById('accesspanel').style.height="360px";
+	document.getElementById('message').style.color="red";
 	document.getElementById("message").innerText="Invalid Email or Password";
 }
 
@@ -74,7 +94,7 @@ else{
 
 
 $(document).on("click", "#resendotp", function() {
-
+	sendotp();
     $.ajax({
     	method: 'post',
         url: 'Signup',
@@ -84,7 +104,9 @@ $(document).on("click", "#resendotp", function() {
             password:document.getElementById("passwordid").value
         },
         success: function(responseText) {
+			
         	$("#message").html("Otp Sent Successfully");
+			document.getElementById('message').style.color="lightgreen";	
         }
     });
 
@@ -104,6 +126,7 @@ $(document).on("click", "#verify", function() {
         },
         error: function () {
         	$("#message").html("Incorrect Otp");
+			document.getElementById('message').style.color="red";
            
           }
     });
@@ -189,6 +212,7 @@ $(document).on("click", "#forgotgo", function(e) {
     });
 }
 else{
+	
 	document.getElementById("message").innerText="Invalid Email";
 }
 

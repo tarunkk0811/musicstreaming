@@ -26,7 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
 
-<link rel="stylesheet" href="login-css.css">
+<link rel="stylesheet" href="css/login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">
 <title>Signup here</title>
@@ -51,7 +51,7 @@ else
 <div class="background-wrap">
   <div class="background"></div>
 </div>
-<form id="accesspanel" name='signupform' action="VerifyUser" method="POST" style="height: 345px;">
+<form id="accesspanel" name='signupform' action="VerifyUser" method="POST" style="height: 350px;">
   <h1 id="litheader">Music Streamer</h1>
   <div class="inset">
 
@@ -80,14 +80,18 @@ else
   
 
    <center>
-     <p id='message'><%if(request.getAttribute("message")!=null){
+     <p id='message'  style='margin-bottom:10px;' ><%if(request.getAttribute("message")!=null){
   out.print(request.getAttribute("message"));
      }	 
     	 %> </p>
      
      </center>
     
-   
+      
+    <center>
+     <p id='insbtn'></p>
+     </center>
+   <br>
   <p class="p-container" style="width:300px;" id="button">
    <!--  <input type="submit" form=""  name="Login" id="go" value="Send Otp"/> -->
    <button type="submit" form="" name="Login" id="go" value="Send Otp">
@@ -105,7 +109,7 @@ else
 </form>
 
 
-<script src='auth.js'></script>
+<script src='js/auth.js'></script>
 
 
 

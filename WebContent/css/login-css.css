@@ -8,6 +8,14 @@ button:focus{
 	outline:none;
 }
 
+#message{
+	margin-bottom: 10px;
+    font-family: monospace;
+    font-weight: 100;
+    color: lightgreen;
+	
+}
+
 ::-moz-selection {
     background: #cc0000;
     text-shadow: none;
