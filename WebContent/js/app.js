@@ -144,7 +144,8 @@ $(document).ready(function() {
 	    
 
 	    $(document).on("click", "#albumbutton", function(e) {
-			console.log(this);
+			
+			
 			var urlid = $(this).val();
 	        var button = e.target;
 			temp=e.target;
@@ -152,7 +153,7 @@ $(document).ready(function() {
 	        document.getElementById('current-song-album').style.display = "block";
 			
 			var language = this.parentElement.parentElement.parentElement.classList[1];
-	      console.log(language);
+	      
 			if(language==="search-section"){
 				language=this.classList[1];
 				search_results.innerHTML="";
@@ -165,22 +166,22 @@ $(document).ready(function() {
 	        var url = document.getElementById(urlid).value;
 				
 	        document.getElementById('current-song-img').src = url;
+
+
 			
-	        $.ajax({
+	
+		  $.ajax({
 	            url: 'Songs',
 	            data: {
 	                album: $(this).val()
 	            },
 	            success: function(responseText) {
+				
 					changeContent();
 	                $('#songs').html(responseText);
-					language="";
-					
-
+					language="";	
 	            }
 	        });
-
-	        
 
 	    });
 
@@ -194,8 +195,12 @@ $(document).ready(function() {
 	            },
 	            success: function(responseText) {
 	                $('#recent').html(responseText);
+					
 	            }
-	        }); 
+	        });
+
+
+
 
 	    });
 
@@ -260,13 +265,14 @@ $(document).ready(function() {
 		
 	    current_song = document.getElementById("current-song");
 	    current_song.oncanplaythrough = () => {
-			
-	       	playpause();
-			play.classList.remove("song-load");
-			// play.innerHTML = '<i class="fa fa-pause fa-lg" aria-hidden="true"></i>';
-			
-	        current_song.ontimeupdate = updatePlayTime;
-	        seekBar.max = current_song.duration;
+			if (current_song.paused) {
+                current_song.play();
+                play.innerHTML = '<i class="fa fa-pause fa-lg" aria-hidden="true"></i>';
+            }
+            play.classList.remove("song-load");
+            current_song.ontimeupdate = updatePlayTime;
+            current_song.onended = songEnd;
+            seekBar.max = current_song.duration;
 		
 	    }
 	    songids.length = 0;
@@ -310,10 +316,11 @@ $(document).ready(function() {
 	play.addEventListener('click', playpause);
 
 	// at the end of the song		
-	current_song.onended = () => {
-	        play.innerHTML = '<i class="fa fa-play fa-lg" aria-hidden="true"></i>';
-			playNext();
-	    }
+	
+    let songEnd = () => {
+            play.innerHTML = '<i class="fa fa-play fa-lg" aria-hidden="true"></i>';
+            playNext();
+        }
 	    // every time update on song
 	let updatePlayTime = () => {
 	    let minutes = parseInt(current_song.currentTime / 60, 10);
@@ -525,7 +532,7 @@ $(document).ready(function() {
 			alert("hiiiiiiii");
 	        const language = card[index].parentElement.parentElement.classList[1];
 	        lang.value = language;
-	        console.log(language);
+	        
 	        changeContent();
 	        languages(lang.value);
 	    })

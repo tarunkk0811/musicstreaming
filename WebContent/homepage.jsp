@@ -179,7 +179,7 @@ var uid = '${uid}';
    
     -->
 
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 
 
 </body>
