@@ -200,7 +200,7 @@ public class GetMusic {
 			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
-			String query="select lid,lname from languages";
+			String query="select lid,lname from languages order by lname";
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery(query);
 				while(res.next()) {
