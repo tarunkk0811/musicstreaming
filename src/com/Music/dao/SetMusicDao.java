@@ -200,7 +200,7 @@ public class SetMusicDao {
 			while(song_res.next()) {
 				
 				String id = song_res.getString(3).toString();
-				lastsid=id;
+				lastsid= song_res.getString(1).toString();
 				String s = song_res.getString(4).toString();
 				
 				if(s.equals(songname) && id.equals(aid)){
@@ -212,22 +212,27 @@ public class SetMusicDao {
 				song_count+=1;
 				
 			}
+			
 			String song_insert_query = "insert into songs(SID,LID,AID,SNAME,SONG_URL) values(?,?,?,?,?)";
 			PreparedStatement song_insert_stmt = con.prepareStatement(song_insert_query);
 			song_insert_stmt.setString(2,lid);
 			song_insert_stmt.setString(3,aid);
 			song_insert_stmt.setString(4,songname);
 			song_insert_stmt.setString(5,song_url);
+			
 			if(song_count==0) {
 				song_count++;		
 				sid="S"+song_count;			
 				song_insert_stmt.setString(1,sid);
+				
 				rows_eff = song_insert_stmt.executeUpdate();
 				
 			}
 			else {
 				sid="S"+String.valueOf(Integer.parseInt(lastsid.substring(1))+1);
+				
 				song_insert_stmt.setString(1,sid);
+				
 			    rows_eff = song_insert_stmt.executeUpdate();
 
 			}
