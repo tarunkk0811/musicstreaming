@@ -210,12 +210,11 @@ public class LoginDao {
     		
     		String update="update users set password=? where email=?";
     		PreparedStatement updatestmt = con.prepareStatement(update);
-    		
+    		System.out.println(securedpass+"   "+securedpass.length());
     		updatestmt.setString(1, securedpass);
     		updatestmt.setString(2, email);
-    		
     		int rs=updatestmt.executeUpdate();
-    		
+    		System.out.println(rs);
     		if(rs>0){
     			
     			return true;

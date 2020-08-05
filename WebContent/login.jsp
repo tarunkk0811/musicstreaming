@@ -28,7 +28,7 @@
     
     
 
-<link rel="stylesheet" href="login-css.css">
+<link rel="stylesheet" href="css/login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">
 <title>Login</title>
@@ -71,7 +71,7 @@ else
     </div>
     <input id='hidethis' class="loginLoginValue" type="hidden" name="service" value="login" />
   </div>
-
+<center>
 <p id='message'>
      <% 
  if(request.getAttribute("message")!=null)
@@ -80,6 +80,7 @@ else
  }
    %>  
    </p>
+   </center>
   <p class="p-container" style="width:300px;" id="button">
    
     <!-- <input type="submit" name="Login" id="go" value="Login"/> -->

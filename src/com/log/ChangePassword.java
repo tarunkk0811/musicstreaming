@@ -21,7 +21,7 @@ public class ChangePassword extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email=request.getParameter("email");
+		String email=request.getParameter("username");
 		String pass=request.getParameter("pass");
 		LoginDao login = new LoginDao();
 		boolean res=login.changePassword(email, pass);

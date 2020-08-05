@@ -26,7 +26,6 @@ let validatePassword = () => {
 
 function sendotp(){
 		
-		
 		let countDownResend = setInterval(()=>{
    		 let tag = document.getElementsByTagName('strong')[0];
   		 timer--; 
@@ -137,6 +136,19 @@ $(document).on("click", "#verify", function() {
 //forgot password
 function forgotsendotp(){
 	
+/*		 let countDownResend = setInterval(()=>{
+   		 let tag = document.getElementsByTagName('strong')[0];
+  		 timer--; 
+		 tag.innerText = timer;
+  		 
+ 		   if(timer === 0){
+ 		   clearInterval(countDownResend);
+			document.getElementById("resendotp").disabled=false;
+			document.getElementById("resendotp").style.opacity=1;
+			timer=30;
+			}
+			},1000)
+*/
 	
 	//if(document.getElementById('name').innerText!="" &&  (document.getElementById('email').innerText!="") && (document.getElementById('password').innerText!="")){
 		
