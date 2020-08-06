@@ -18,7 +18,7 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
-    <link rel="stylesheet" href="css/home-styles.css">
+    <link rel="stylesheet" href="home-styles.css">
     <link rel="shortcut icon" href="#">
     <title>Music Streamer</title>
 </head>
@@ -89,7 +89,7 @@ var uid = '${uid}';
     <div class="first-row row mx-auto">
         <div class="sideBars albums-list col-lg-2 col-12">
             <p> <span>Trending</span>
-                <span id="albums-close"><button>X</button></span>
+                <span id="albums-close"><button><i class="fa fa-times" style="color: white;" aria-hidden="true"></i></button></span>
             </p>
             <div id="albums" style="border-bottom:0px;">
                
@@ -97,6 +97,12 @@ var uid = '${uid}';
         </div>
 
         <div class="main col-xs-12 col-lg-8 mx-auto">
+        
+        	<div class="back-button">
+                <!-- <h4>Top Albums</h4> -->
+                <button id="backbutton"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></button>
+            </div>
+        
             <button class="mob-albums-list">Trending</button>
             <div class="lang-select-loading">
             	<div class="album-name-img">
@@ -108,23 +114,15 @@ var uid = '${uid}';
             <ul id="songs" class="album-songs">
                </ul>
             </div>
-               
-               
-     <div   class="initial-loading" id="trending_albumss">
-               
+ 
+     <div   class="initial-loading" id="trending_albumss">              
         </div>
-
-            
-        
-            
-               
-               
-            <button class="mob-recent">Recent</button>
+         <button class="mob-recent">Recent</button>
         </div>
 
         <div class="sideBars recent col-lg-2">
             <p>Recently played
-                <span id="recent-close"><button>X</button></span>
+                <span id="recent-close"><button><i class="fa fa-times" style="color: white;" aria-hidden="true"></i></button></span>
             </p>
 			<div id="recent" style="border-bottom:0px;">
 			</div>
@@ -143,7 +141,9 @@ var uid = '${uid}';
             <center>
                 <div class="control-buttons mx-auto centered">
                     <button class="playPrev" onclick="playPrev()"><i class="fa fa-step-backward fa-lg" aria-hidden="true"></i></button>
+                    
                     <button class="play-pause"><i class="fa fa-play fa-lg" aria-hidden="true"></i></button>
+                    
                     <button class="playNext" onclick="playNext()"><i class="fa fa-step-forward fa-lg" aria-hidden="true"></i></button>
 
                     <div id="play-song" hidden=""><audio controls="" class="Oola olala" id="current-song"><source src="" type="audio/mpeg"></audio></div>
@@ -179,7 +179,7 @@ var uid = '${uid}';
    
     -->
 
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 
 
 </body>

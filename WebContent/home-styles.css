@@ -303,7 +303,10 @@ input[type="range"] {
       overflow: hidden;
   }
   
-  
+  #backbutton{
+  text-align: left;
+  margin-top: 10px;
+ }
   
   
   #current-song-title {
@@ -323,6 +326,8 @@ input[type="range"] {
       padding: 8px;
       height: 45px;
       width: 45px;
+      margin:0px 25px;
+      
   }
   
   button.play-pause:hover {

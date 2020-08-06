@@ -25,18 +25,20 @@
 	const langContent = document.querySelector(".lang-select-loading");
 	const card = document.getElementsByClassName("card-div");
 	var temp;
-	
+	document.getElementById("backbutton").style.display="none";
 	// added varibles
 
 	const albumCards = document.getElementsByClassName("album-cards");
 
 		let changeContent = () => {
 	    if (lang.value === "") {
+			document.getElementById("backbutton").style.display="none";
 	        langContent.style.display = "none";
 	        initialContent.style.display = "block";
 	        albumsdiv.previousElementSibling.children[0].innerText = "Trending";
 	        mobAlbum.innerText = "Trending";
 	    } else  {
+			document.getElementById("backbutton").style.display="block";
 	        langContent.style.display = "block";
 	        initialContent.style.display = "none";
 	        albumsdiv.previousElementSibling.children[0].innerText = "Albums";
@@ -45,8 +47,21 @@
 	}
 
 	
+	let backbutton = ()=> {
+		lang.value="";
+		$('#albums').fadeOut(500);
+		changeContent();
+        $.ajax({
+            url: 'TrendingSongs',
+            success: function(responseText) {
+	            $('#albums').html(responseText);
+				$('#albums').fadeIn(500);
+            }
+        });
+			
+	}
 	
-	
+$(document).on('click','#backbutton',backbutton);
 	
 	
 $(document).ready(function() { 
@@ -103,7 +118,7 @@ $(document).ready(function() {
 	
 	
  	languages=(lang_clicked,source="")=> { 
-	
+			
 	        $.ajax({
 	            url: 'Albums',
 	            data: {
@@ -113,6 +128,7 @@ $(document).ready(function() {
 	                $('#albums').html(responseText);
 					if(source=="fromtop"){	
 					document.getElementsByClassName('album-btn')[0].click();
+					$('#albums').fadeIn(400);
 					}
 	            }
 	        });
@@ -120,7 +136,7 @@ $(document).ready(function() {
 	
 	
     $(document).on("change", "#langs",function() {
-		
+		$('#albums').fadeOut(700);
 		languages(lang.value,source="fromtop");
 	
 	});
@@ -144,7 +160,6 @@ $(document).ready(function() {
 	    
 
 	    $(document).on("click", "#albumbutton", function(e) {
-			
 			
 			var urlid = $(this).val();
 	        var button = e.target;
@@ -180,6 +195,7 @@ $(document).ready(function() {
 					changeContent();
 	                $('#songs').html(responseText);
 					language="";	
+					
 	            }
 	        });
 
@@ -332,11 +348,11 @@ $(document).ready(function() {
 	    if (current_song.muted) {
 	        mute.innerHTML = '<i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>';
 	        current_song.muted = false;
-	        //current_song.volume = 1;
+	        current_song.volume = 1;
 	    } else {
 	        mute.innerHTML = '<i style="color:red;" class="fa fa-volume-off fa-lg" aria-hidden="true"></i>';
 	        current_song.muted = true;
-	        //current_song.volume = 0;
+	        current_song.volume = 0;
 	    }
 	    updateVolume();
 	}
