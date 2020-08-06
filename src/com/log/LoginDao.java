@@ -21,7 +21,6 @@ public class LoginDao {
     	String user[]= {"","",""};
     	
         String securedpassword=  get_SHA_256_SecurePassword(password);
-    
         
 	try {	
 		

@@ -31,7 +31,6 @@ public class Signup extends HttpServlet {
 		
 		res=login.checkMail(email);
 		
-		
 //		System.out.print("data: "+name+email+password);
 
 //		| name=="" |email==""| password==""
@@ -39,10 +38,13 @@ public class Signup extends HttpServlet {
 			response.setStatus(400);	
 		}
 		else {
+			
 			int n = 10000 + new Random().nextInt(90000);
+			
 			String otp = String.valueOf(n);
 			
 			SendMailer.sendMail(email, "OTP", otp);
+			
 			try {
 				login.setUser(name, email, password, otp);
 			} catch (NoSuchAlgorithmException | NoSuchProviderException e) {
