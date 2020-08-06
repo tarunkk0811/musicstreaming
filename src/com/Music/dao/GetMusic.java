@@ -80,8 +80,9 @@ public class GetMusic {
 	}
 	
 	
-	public String getSongs(String aid) {
+	public String getSongs(String aid,int uid) {
 		String s="";
+		String fav="<i class='fa fa-heart-o' aria-hidden='true'></i>";
 		//System.out.print("Entered songs");
 		try {	
 			Class.forName("org.postgresql.Driver");
@@ -96,15 +97,26 @@ public class GetMusic {
 			ResultSet res = stmt.executeQuery();
 			
 			while(res.next()){
+				
 				String sid = res.getString(1);
 				String snames=res.getString(2);
 				String sname = snames.substring(0, 1).toUpperCase() + snames.substring(1).toLowerCase();
 				String song_url=res.getString(3);
 				
-				s+="<li id='songlist' class='album-songs-list'><p class='music-icon'><i class='fa fa-music' aria-hidden='true'></i></span></p><p class='song-details'><span class='song-name'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button></span><!--<span class='tech-details'> Music director . singers . film</span>--></p><p class='song-fav-icon'> <button> <i class='fa fa-heart-o' aria-hidden='true'></i> </button> </p></li>"
+				String checkfav="Select * from favourites where sid=? and uid=?";
+				PreparedStatement favstmt = con.prepareStatement(checkfav);
+				favstmt.setString(1,sid);
+				favstmt.setInt(2,uid);
+				ResultSet rs = favstmt.executeQuery();
+				while(rs.next()) {
+					fav="<i class=\"fa fa-heart\" style=\"color: #ff1e1e;\" aria-hidden=\"true\"></i>";
+				}
+				
+				s+="<li id='songlist' class='album-songs-list'><p class='music-icon'><i class='fa fa-music' aria-hidden='true'></i></span></p><p class='song-details'><span class='song-name'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button></span><!--<span class='tech-details'> Music director . singers . film</span>--></p><p class='song-fav-icon'> <button value='"+sid+"' id='fav' >"+fav+" </button> </p></li>"
 						+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
 				   
-				}
+				
+			}
 			con.close();
 			
 			

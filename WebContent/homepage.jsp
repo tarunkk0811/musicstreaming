@@ -35,7 +35,7 @@ if(session.getAttribute("uid")==null){
 %>
 <% String uid=(String)session.getAttribute("uid"); %>
 <script>
-var uid = '${uid}';
+const uid = '${uid}';
 </script>
 
 

@@ -55,7 +55,7 @@
             url: 'TrendingSongs',
             success: function(responseText) {
 	            $('#albums').html(responseText);
-				$('#albums').fadeIn(500);
+				$('#albums').fadeIn(400);
             }
         });
 			
@@ -188,10 +188,10 @@ $(document).ready(function() {
 		  $.ajax({
 	            url: 'Songs',
 	            data: {
-	                album: $(this).val()
+	                album: $(this).val(),
+					uidd:uid
 	            },
 	            success: function(responseText) {
-				
 					changeContent();
 	                $('#songs').html(responseText);
 					language="";	
@@ -215,10 +215,29 @@ $(document).ready(function() {
 	            }
 	        });
 
-
-
-
 	    });
+
+	$(document).on('click','#fav',function(){
+		var icon=this.firstElementChild;
+		if(icon.classList.contains("fa-heart")){
+			this.innerHTML='<i class="fa fa-heart-o"  aria-hidden="true"></i>';
+		}
+		else{
+			this.innerHTML='<i class="fa fa-heart" style="color: #ff1e1e;" aria-hidden="true"></i>';
+		}
+		
+		$.ajax({
+			url:'Favourites',
+			data:{
+		   	 	sid :$(this).val(),
+		    	uidd : uid
+			},
+			success:function(responseText){
+				
+			}			
+		});
+	
+	});
 
 
 //document.getElementById('songlist').children[1].getElementsByTagName('button')[0].id
@@ -321,7 +340,7 @@ $(document).ready(function() {
 	    document.getElementById('play-song').innerHTML = "<audio controls class='" + name + "' id='current-song'><source src=" + songurl + " type='audio/mpeg'></audio>";
 		
 	    current_song = document.getElementById("current-song");
-	    current_song.oncanplaythrough = () => {
+	    current_song.oncanplay = () => {
             let minutes = parseInt(current_song.duration / 60, 10);
             let seconds = parseInt(current_song.duration % 60);
             document.getElementById("play-end").innerText = minutes + ':' + seconds;

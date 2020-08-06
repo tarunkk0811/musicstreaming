@@ -296,4 +296,52 @@ public class SetMusicDao {
 	 
 		 	return true;
 }
+	 
+	 public Boolean setfav(int uid,String sid) {
+		 try {
+			 	
+			 	Class.forName("org.postgresql.Driver");
+					  
+				Connection con = DriverManager.getConnection(url,dbuname,dbpass);
+				
+				String check_previous_occurred = "select *from favourites where uid=? and sid=?";	
+				String del_previous_occurred = "delete from favourites where uid=? and sid=?";
+				
+				PreparedStatement check_stmt = con.prepareStatement(check_previous_occurred);
+				PreparedStatement del_stmt = con.prepareStatement(del_previous_occurred);
+				
+				check_stmt.setInt(1, uid);
+				check_stmt.setString(2, sid);
+				
+				ResultSet res = check_stmt.executeQuery();
+				while(res.next()) {
+					del_stmt.setInt(1, uid);
+					del_stmt.setString(2, sid);
+					del_stmt.executeUpdate();
+					return true;
+				}
+				
+				String insert_recents_query="insert into favourites(uid,sid) values(?,?)";
+				
+				PreparedStatement statement = con.prepareStatement(insert_recents_query);
+				
+				statement.setInt(1, uid);
+				statement.setString(2, sid);
+				int re = statement.executeUpdate();
+				con.close();
+				if(re>0) {
+					return true;
+				}
+			 
+		 }
+		 catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+				return false;
+			}
+	 
+		 	return true;
+}
+	 
+	 
+	 
 }
