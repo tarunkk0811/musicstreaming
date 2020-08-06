@@ -18,7 +18,7 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
-    <link rel="stylesheet" href="home-styles.css">
+    <link rel="stylesheet" href="css/home-styles.css">
     <link rel="shortcut icon" href="#">
     <title>Music Streamer</title>
 </head>
@@ -137,7 +137,7 @@ var uid = '${uid}';
         <div class="player-pannel">
             <div class="current-song-details mx-left">
                 <img src="https://cdn.dribbble.com/users/1526471/screenshots/3709702/equalizer.gif" id="current-song-img" style="max-width: 80px; height: 80px;" alt="Loading..">
-                <span id="current-song-title">Current Song</span>
+                <span id="current-song-title"></span>
                 <span class="song-fav-icon"><button><i class="fa fa-heart-o" aria-hidden="true"></i></button></span>
             </div>
             <center>
@@ -156,7 +156,7 @@ var uid = '${uid}';
                     <span id="play-end">00:00</span>
                 </div>
                 <div id="current-song-title-mob" class="mob d-lg-none">
-                    Current Song
+                    
                 </div>
             </center>
             <div class="other-controls mx-right d-flex align-items-center">
@@ -179,7 +179,7 @@ var uid = '${uid}';
    
     -->
 
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
 
 
 </body>

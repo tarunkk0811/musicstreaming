@@ -227,6 +227,7 @@ $(document).ready(function() {
 });
 
 
+/*
 	var playpause = () => {
 	
 	    updatePlayTime();
@@ -252,28 +253,70 @@ $(document).ready(function() {
 		
 		
 	}
+	
+*/
+
+// toggle play pause
+    let playpause = () => {
+        if (current_song.currentSrc !== "") {
+            if (current_song.paused)
+                current_song.play();
+            else
+                current_song.pause();
+        }
+    }
+
+    //  when song is paused
+    let songPaused = () => {
+        play.innerHTML = '<i class="fa fa-play fa-lg" aria-hidden="true"></i>';
+    }
+
+    // when song is playing
+    let songPlaying = () => {
+        play.innerHTML = '<i class="fa fa-pause fa-lg" aria-hidden="true"></i>';
+    }
+
+    // update seek bar
+    let updateSeekBar = () => {
+        seekBar.value = current_song.currentTime;
+    }
+
+	// at the end of the song			
+    let songEnd = () => {
+            play.innerHTML = '<i class="fa fa-play fa-lg" aria-hidden="true"></i>';
+            playNext();
+    }
+
+    // on keypress of spacebar playpause() is called
+    window.addEventListener('keypress', key => {
+        if (key.which === 32)
+            playpause();
+    })
 
 
-
+	
 	function playSong(id, name) {
 		play.classList.add("song-load")
 		seekBar.disabled=false;
 	    document.getElementById('current-song-title').innerText = name;
 		document.getElementById('current-song-title-mob').innerText = name;
+		document.title=name;
 	    var songurl = document.getElementsByClassName(id)[0].value;
 	    document.getElementById('play-song').innerHTML = "<audio controls class='" + name + "' id='current-song'><source src=" + songurl + " type='audio/mpeg'></audio>";
 		
 	    current_song = document.getElementById("current-song");
 	    current_song.oncanplaythrough = () => {
-			if (current_song.paused) {
+            let minutes = parseInt(current_song.duration / 60, 10);
+            let seconds = parseInt(current_song.duration % 60);
+            document.getElementById("play-end").innerText = minutes + ':' + seconds;
+            if (current_song.paused)
                 current_song.play();
-                play.innerHTML = '<i class="fa fa-pause fa-lg" aria-hidden="true"></i>';
-            }
             play.classList.remove("song-load");
             current_song.ontimeupdate = updatePlayTime;
             current_song.onended = songEnd;
+            current_song.onpause = songPaused;
+            current_song.onplay = songPlaying;
             seekBar.max = current_song.duration;
-		
 	    }
 	    songids.length = 0;
 	    songnames.length = 0;
@@ -304,23 +347,18 @@ $(document).ready(function() {
 	}
 
 	// select language 
-	let selectLang = () => {
+/*	let selectLang = () => {
 	    if (lang.vale === "") {
 	        document.querySelector('.lang-select').classList.add("shake");
 	    } else {
 	        document.querySelector('.lang-select').classList.remove("shake");
 	    }
 	}
-
+*/
 	// play pause event
 	play.addEventListener('click', playpause);
 
-	// at the end of the song		
 	
-    let songEnd = () => {
-            play.innerHTML = '<i class="fa fa-play fa-lg" aria-hidden="true"></i>';
-            playNext();
-        }
 	    // every time update on song
 	let updatePlayTime = () => {
 	    let minutes = parseInt(current_song.currentTime / 60, 10);
@@ -347,6 +385,7 @@ $(document).ready(function() {
 	
 
 	function playNext() {
+		if(current_song.currentSrc!=""){	
 	    cursong = document.getElementById("current-song").className;
 	    alblen = songnames.length;
 	    idx = songnames.indexOf(cursong);
@@ -357,9 +396,11 @@ $(document).ready(function() {
 	    } else {
 	        playSong(songids[idx + 1], songnames[idx + 1]);
 	    }
+	}
 	};
 
 	function playPrev() {
+		if(current_song.currentSrc!=""){
 	    cursong = document.getElementById("current-song").className;
 	    alblen = songnames.length;
 	    idx = songnames.indexOf(cursong);
@@ -370,7 +411,7 @@ $(document).ready(function() {
 	    } else {
 	        playSong(songids[idx - 1], songnames[idx - 1]);
 	    }
-
+	}
 	}
 	
 	

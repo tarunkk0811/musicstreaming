@@ -21,15 +21,24 @@ public class ChangePassword extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean res=false;
 		String email=request.getParameter("username");
 		String pass=request.getParameter("pass");
-		LoginDao login = new LoginDao();
-		boolean res=login.changePassword(email, pass);
+		String conpass=request.getParameter("conpass");
+		if(conpass.equals(pass) && pass.length()>=8 ) {
+			LoginDao login = new LoginDao();
+			res=login.changePassword(email, pass);		
+		}
 		if(res) {
 			request.setAttribute("message","Password changed");
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp"); 
 			rd.forward(request, response);
-		}	
+		}
+		else {
+			request.setAttribute("message","Password change failed");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp"); 
+			rd.forward(request, response);	
+		}
 	}
 
 }

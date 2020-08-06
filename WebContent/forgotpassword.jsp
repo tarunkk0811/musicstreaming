@@ -110,7 +110,7 @@ else
      
 </form>
 
-<script src='js/auth.js'></script>
+<script src='auth.js'></script>
 
 
 </body>

@@ -72,7 +72,8 @@ else
     <input id='hidethis' class="loginLoginValue" type="hidden" name="service" value="login" />
   </div>
 <center>
-<p id='message'>
+
+<p id='message' ">
      <% 
  if(request.getAttribute("message")!=null)
  {
@@ -95,7 +96,7 @@ else
 
 </form>
 
-<script src='js/auth.js'></script>
+<script src='auth.js'></script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ button {
       color: white;
   }
   
-  
+
   .dropdown-menu {
       background-color: #343a40;
   }
@@ -418,17 +418,18 @@ input[type="range"] {
   }
   
   .song-name button {
-      width: auto;
+      width:100%;
+      text-align:left;
   }
   
   .mob-albums-list {
       display: none;
       position: fixed;
       transform: rotate(90deg);
-      width: 80px;
+      width: 90px;
       left: 0;
       top: 250px;
-      margin-left: -40px;
+      margin-left: -35px;
       border: 0px;
       background-color: lightslategray;
       color: white;
@@ -442,8 +443,8 @@ input[type="range"] {
       display: none;
       position: fixed;
       transform: rotate(270deg);
-      width: 80px;
-      margin-right: -35px;
+      width: 90px;
+      margin-right: -33px;
       right: 0;
       top: 250px;
       border: 0px;
@@ -683,10 +684,14 @@ input[type="range"] {
       .album-cards li {
           width: 45%;
       }
+      
+      .initial-loading .row:last-child {
+ 		 	padding-bottom:100px;
+ 	 }
+      
   }
 
-  
-  
+
   input[type="range"]::-webkit-slider-runnable-track {
       -webkit-appearance: none;
       appearance: none;

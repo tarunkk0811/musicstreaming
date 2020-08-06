@@ -10,6 +10,16 @@ let loadingBtn = (load_msg) => {
             btn.style.opacity = 0.5;
             btn.style.cursor = "not-allowed";
         }
+let unload=(load_msg) =>{
+	
+            let btn = form.getElementsByTagName('button')[0];
+            btn.disabled = false;
+            btn.innerHTML = load_msg;
+            btn.style.opacity = 1;
+            btn.style.cursor = "pointer";
+	
+}
+
 let validateEmail = () => {
             const email = form["username"].value;
             if (email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
@@ -63,7 +73,7 @@ function sendotp(){
 
 
 $(document).on("click", "#go", function() {
-	if(validateEmail()&& validatePassword()){
+if(validateEmail()&& validatePassword()){
 		loadingBtn("Sending Otp");
     $.ajax({
     	method: 'post',
@@ -79,6 +89,8 @@ $(document).on("click", "#go", function() {
         },
         error: function () {
         	$("#message").html("You are Already a User please Login");
+			document.getElementById('accesspanel').style.height="370px";
+			unload("Sign Up");
            
           }
     });
@@ -86,7 +98,7 @@ $(document).on("click", "#go", function() {
 else{
 	document.getElementById('accesspanel').style.height="360px";
 	document.getElementById('message').style.color="red";
-	document.getElementById("message").innerText="Invalid Email or Password";
+	document.getElementById('message').innerText="Invalid Email or Password";
 }
 
 });
@@ -134,27 +146,31 @@ $(document).on("click", "#verify", function() {
 
 
 //forgot password
+
+
+
 function forgotsendotp(){
 	
-/*		 let countDownResend = setInterval(()=>{
+		 let countDownResend = setInterval(()=>{
    		 let tag = document.getElementsByTagName('strong')[0];
   		 timer--; 
 		 tag.innerText = timer;
   		 
  		   if(timer === 0){
  		   clearInterval(countDownResend);
-			document.getElementById("resendotp").disabled=false;
-			document.getElementById("resendotp").style.opacity=1;
+			document.getElementById("forgotresendotp").disabled=false;
+			document.getElementById("forgotresendotp").style.opacity=1;
 			timer=30;
 			}
 			},1000)
-*/
+
 	
-	//if(document.getElementById('name').innerText!="" &&  (document.getElementById('email').innerText!="") && (document.getElementById('password').innerText!="")){
 		
 		document.getElementById('accesspanel').style.height="240px";
 	
-		document.getElementById('ins').innerHTML="<button form='' style='height:auto;width:auto; background-color:transparent;border:0;color:#ffffff;';  id='forgotresendotp'>Resend Otp</button>";
+		document.getElementById('ins').innerHTML="Try again in <strong>30 </strong> seconds: <button form='' style='margin: 0; opacity:0.4; width: auto; height: auto;margin-top: 0; margin-bottom: 5px; background: transparent; color: white;' id='forgotresendotp' disabled>Resend Otp</button>";
+		
+		
 		
 		document.getElementById('otp').style.display="block";
 		
@@ -166,7 +182,7 @@ function forgotsendotp(){
 		
 		document.getElementById('accesspanel').style.height="300px";
 	
-	//}
+	
 }
 
 
@@ -175,12 +191,39 @@ function newpassword(){
 	document.getElementById('otp').style.display="none";
 	document.getElementById('new').style.display="block";
 	document.getElementById('con').style.display="block";
-	document.getElementById('button').innerHTML= "<button type='submit' name='verify' id='forgotverify' value='Change Password'>Change Password</button>";
+	document.getElementById('button').innerHTML= "<button type='submit' name='verify' form='' id='passwordverify' value='Change Password'>Change Password</button>";
 	document.getElementById('message').innerHTML="";
 }
 
 
-$(document).on("click", "#forgotresendotp", function(e) {
+$(document).on("click", "#passwordverify", function() {
+	document.getElementById('message').innerHTML="";
+	document.getElementById('message').style.color="red";
+	
+	if(form['pass'].value.length<8){
+		document.getElementById('message').innerHTML="Length must be 8 Characters";
+	}
+	else if(form['pass'].value!==form['conpass'].value){
+		document.getElementById('message').innerHTML="Password Mismatch";
+	}
+	else{
+		
+		form.submit();
+		document.getElementById('passwordverify').innerText="Please Wait...";
+		document.getElementById('passwordverify').disabled=true;
+		document.getElementById('passwordverify').style.opacity=0.4;
+		document.getElementById('message').style.color="lightgreen";
+
+	}
+	
+		});
+
+
+$(document).on("click", "#forgotresendotp", function() {
+	
+	document.getElementById('forgotresendotp').innerText="Sending...";
+	document.getElementById('forgotresendotp').disabled=true;
+	
 	document.getElementById('message').innerHTML="";
     $.ajax({
     	method: 'post',
@@ -191,9 +234,13 @@ $(document).on("click", "#forgotresendotp", function(e) {
         success: function(responseText) {
            forgotsendotp();
            $("#message").html("Otp sent");
+			document.getElementById('message').style.color="lightgreen";
+			document.getElementById('accesspanel').style.height="325px";
+
         },
         error: function () {
         	$("#message").html("failed to send otp");
+			document.getElementById('message').style.color="red";
         
           }
     });
@@ -216,9 +263,16 @@ $(document).on("click", "#forgotgo", function(e) {
         success: function(responseText) {
            forgotsendotp();
            $("#message").html("otp sent");
+			document.getElementById("message").style.color="lightgreen";
+			document.getElementById('accesspanel').style.height="325px";
+	
         },
         error: function () {
         	$("#message").html("You are not a User please SignUp");
+			document.getElementById("message").style.color="red";
+			unload("Send Otp");
+			document.getElementById('accesspanel').style.height="275px";
+			
         
           }
     });
@@ -226,6 +280,8 @@ $(document).on("click", "#forgotgo", function(e) {
 else{
 	
 	document.getElementById("message").innerText="Invalid Email";
+	document.getElementById("message").style.color="red";
+	document.getElementById('accesspanel').style.height="275px";
 }
 
 });
@@ -247,6 +303,7 @@ $(document).on("click", "#forgotverify", function(e) {
         },
         error: function () {
         	$("#message").html("Incorrect Otp");
+			document.getElementById('message').style.color="red";
         
           }
     });
@@ -258,6 +315,7 @@ $(document).on("click", "#forgotverify", function(e) {
 
 document.getElementById("logingo").addEventListener('click',function(){
 	loadingBtn("Authenticating");
+	
 	document.forms[0].submit();
 	
 })
