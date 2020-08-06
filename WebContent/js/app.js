@@ -201,8 +201,7 @@ $(document).ready(function() {
 
 	    });
 
-		  $(document).on("click", "#songlist", function() {
-			
+		  $(document).on("click", "#each_song", function() {
 	        $.ajax({
 	            url: 'RecentlyPlayed',
 	            data: {
@@ -530,7 +529,7 @@ $(document).ready(function() {
 
 	var resize_mob = () => {
 	    let firstRow = document.querySelector('.first-row');
-	    let recent = document.querySelector('.recent')
+	    let recent = document.querySelector('.recent');
 	    if (window.innerWidth < 992) {
 	        firstRow.insertBefore(recent, firstRow.firstElementChild.nextSibling);
 	        document.querySelector('.albums-list').style.display = "none";

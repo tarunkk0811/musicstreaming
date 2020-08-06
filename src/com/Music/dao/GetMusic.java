@@ -112,7 +112,7 @@ public class GetMusic {
 					fav="<i class=\"fa fa-heart\" style=\"color: #ff1e1e;\" aria-hidden=\"true\"></i>";
 				}
 				
-				s+="<li id='songlist' class='album-songs-list'><p class='music-icon'><i class='fa fa-music' aria-hidden='true'></i></span></p><p class='song-details'><span class='song-name'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button></span><!--<span class='tech-details'> Music director . singers . film</span>--></p><p class='song-fav-icon'> <button value='"+sid+"' id='fav' >"+fav+" </button> </p></li>"
+				s+="<li id='songlist' class='album-songs-list'><p class='music-icon'><i class='fa fa-music' aria-hidden='true'></i></span></p><p id='each_song' class='song-details'><span class='song-name'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button></span><!--<span class='tech-details'> Music director . singers . film</span>--></p><p class='song-fav-icon'> <button value='"+sid+"' id='fav' >"+fav+" </button> </p></li>"
 						+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
 				   
 				
@@ -153,7 +153,7 @@ public class GetMusic {
 					String song_url=res.getString(3);
 					
 					
-				s+="<li id='songlist' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button> </li>"
+				s+="<li id='each_song' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button> </li>"
 							+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
 				}
 		
