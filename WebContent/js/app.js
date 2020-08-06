@@ -331,6 +331,9 @@ $(document).ready(function() {
 
 	
 	function playSong(id, name) {
+		var k = document.getElementById('fav');
+		document.querySelector('.bottom-fav').innerHTML=k.innerHTML;
+		document.querySelector('.bottom-fav').value=k.value;
 		play.classList.add("song-load")
 		seekBar.disabled=false;
 	    document.getElementById('current-song-title').innerText = name;

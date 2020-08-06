@@ -136,7 +136,7 @@ const uid = '${uid}';
             <div class="current-song-details mx-left">
                 <img src="https://cdn.dribbble.com/users/1526471/screenshots/3709702/equalizer.gif" id="current-song-img" style="max-width: 80px; height: 80px;" alt="Loading..">
                 <span id="current-song-title"></span>
-                <span class="song-fav-icon"><button><i class="fa fa-heart-o" aria-hidden="true"></i></button></span>
+                <span class="song-fav-icon"><button class="bottom-fav" value='' id='fav'><i class="fa fa-heart-o" aria-hidden="true"></i></button></span>
             </div>
             <center>
                 <div class="control-buttons mx-auto centered">
