@@ -224,7 +224,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#fav', function() {
-        console.log(this);
+        
         var icon = this.firstElementChild;
         if (icon.classList.contains("fa-heart")) {
             this.innerHTML = '<i class="fa fa-heart-o"  aria-hidden="true"></i>';
@@ -607,10 +607,8 @@ $(document).ready(function() {
     lang.addEventListener('change', changeContent);
     [...card].forEach((item, index) => {
         item.addEventListener('click', () => {
-            alert("hiiiiiiii");
             const language = card[index].parentElement.parentElement.classList[1];
             lang.value = language;
-
             changeContent();
             languages(lang.value);
         })
