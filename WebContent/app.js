@@ -1,105 +1,103 @@
-$(document).ready(function() {
+// all global variables
+songids = [];
+songnames = [];
+let languages;
+var alblen = songnames.length;
+var idx = 0;
+var cursong = null;
+let current_song = document.getElementById("current-song");
+const play = document.querySelector('.play-pause');
+const seekBar = document.getElementById('seekbar');
+const searchBar = document.getElementById('search-bar');
+const search_results = document.querySelector('#search-res');
+let mute = document.getElementById('mute');
+let volume = document.getElementById('volume');
+let lang = document.getElementById('langs');
+const mobAlbum = document.querySelector(".mob-albums-list");
+const mobRecent = document.querySelector(".mob-recent");
+const closeAlbum = document.getElementById("albums-close");
+const closeRecent = document.getElementById("recent-close");
+const albumsdiv = document.getElementById("albums");
+const recentdiv = document.getElementById("recent");
+//initial
+const initialContent = document.querySelector(".initial-loading");
+const langContent = document.querySelector(".lang-select-loading");
+const card = document.getElementsByClassName("card-div");
+var temp;
+let muted = false;
+var allsongs;
+const albumCards = document.getElementsByClassName("album-cards");
 
-    // all global variables
-    songids = [];
-    songnames = [];
-    let languages;
-    var alblen = songnames.length;
-    var idx = 0;
-    var cursong = null;
-    let current_song = document.getElementById("current-song");
-    const play = document.querySelector('.play-pause');
-    const seekBar = document.getElementById('seekbar');
-    const searchBar = document.getElementById('search-bar');
-    const search_results = document.querySelector('#search-res');
-    let mute = document.getElementById('mute');
-    let volume = document.getElementById('volume');
-    let lang = document.getElementById('langs');
-    const mobAlbum = document.querySelector(".mob-albums-list");
-    const mobRecent = document.querySelector(".mob-recent");
-    const closeAlbum = document.getElementById("albums-close");
-    const closeRecent = document.getElementById("recent-close");
-    const albumsdiv = document.getElementById("albums");
-    const recentdiv = document.getElementById("recent");
-    //initial
-    const initialContent = document.querySelector(".initial-loading");
-    const langContent = document.querySelector(".lang-select-loading");
-    const card = document.getElementsByClassName("card-div");
-    var temp;
-    let muted = false;
-    var allsongs;
-    const albumCards = document.getElementsByClassName("album-cards");
+document.getElementById("backbutton").style.display = "none";
+seekBar.disabled = true;
+document.getElementById('current-song-album').style.display = "none";
 
-    document.getElementById("backbutton").style.display = "none";
-    seekBar.disabled = true;
-    document.getElementById('current-song-album').style.display = "none";
+let changeContent = () => {
+    if (lang.value === "") {
+        document.getElementById("backbutton").style.display = "none";
+        langContent.style.display = "none";
+        initialContent.style.display = "block";
+        albumsdiv.previousElementSibling.children[0].innerText = "Trending";
+        mobAlbum.innerText = "Trending";
+    } else {
+        document.getElementById("backbutton").style.display = "block";
+        langContent.style.display = "block";
+        initialContent.style.display = "none";
+        albumsdiv.previousElementSibling.children[0].innerText = "Albums";
+        mobAlbum.innerText = "Albums";
+    }
+}
 
-    let changeContent = () => {
-        if (lang.value === "") {
-            document.getElementById("backbutton").style.display = "none";
-            langContent.style.display = "none";
-            initialContent.style.display = "block";
-            albumsdiv.previousElementSibling.children[0].innerText = "Trending";
-            mobAlbum.innerText = "Trending";
-        } else {
-            document.getElementById("backbutton").style.display = "block";
-            langContent.style.display = "block";
-            initialContent.style.display = "none";
-            albumsdiv.previousElementSibling.children[0].innerText = "Albums";
-            mobAlbum.innerText = "Albums";
+
+let backbutton = () => {
+    lang.value = "";
+    $('#albums').fadeOut(500);
+    changeContent();
+    $.ajax({
+        url: 'TrendingSongs',
+        success: function(responseText) {
+            $('#albums').html(responseText);
+            $('#albums').fadeIn(400);
+
         }
-    }
+    });
 
+}
 
-    let backbutton = () => {
-        lang.value = "";
-        $('#albums').fadeOut(500);
-        changeContent();
-        $.ajax({
-            url: 'TrendingSongs',
-            success: function(responseText) {
-                $('#albums').html(responseText);
-                $('#albums').fadeIn(400);
-
-            }
-        });
-
-    }
-
-    let favs = (temp, mess) => {
-        $.ajax({
-            url: 'Favourites',
-            data: {
-                mes: mess,
-                sid: $(temp).val(),
-                uidd: uid
-            },
-            success: function(responseText) {
-                if (mess == "get") {
-                    $('#recent').html(responseText);
-                    $('#recent').fadeIn(300);
-                }
-            }
-        });
-
-    }
-
-    let renderRecents = () => {
-        $.ajax({
-            url: 'RecentlyPlayed',
-            data: {
-                uidd: uid
-            },
-            success: function(responseText) {
+let favs = (temp, mess) => {
+    $.ajax({
+        url: 'Favourites',
+        data: {
+            mes: mess,
+            sid: $(temp).val(),
+            uidd: uid
+        },
+        success: function(responseText) {
+            if (mess == "get") {
                 $('#recent').html(responseText);
                 $('#recent').fadeIn(300);
             }
-        });
-    }
+        }
+    });
 
-    $(document).on('click', '#backbutton', backbutton);
+}
 
-    //$(document).ready(function() {
+let renderRecents = () => {
+    $.ajax({
+        url: 'RecentlyPlayed',
+        data: {
+            uidd: uid
+        },
+        success: function(responseText) {
+            $('#recent').html(responseText);
+            $('#recent').fadeIn(300);
+        }
+    });
+}
+
+$(document).on('click', '#backbutton', backbutton);
+
+    $(document).ready(function() {
     ////////////////////////////////////////////////////////////////////// 
     renderRecents();
 
@@ -134,7 +132,7 @@ $(document).ready(function() {
 
 
 
-    //});
+});
 
 
 
@@ -617,4 +615,3 @@ $(document).ready(function() {
 
     resize_mob();
     displayCards();
-})

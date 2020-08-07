@@ -97,6 +97,7 @@ const uid = '${uid}';
         </div>
 
         <div class="main col-xs-12 col-lg-8 mx-auto">
+         
         
         	<div class="back-button">
                 <!-- <h4>Top Albums</h4> -->
