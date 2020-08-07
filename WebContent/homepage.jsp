@@ -18,7 +18,7 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="icon" href="css/music.png" type="image/icon type">
-    <link rel="stylesheet" href="css/home-styles.css">
+    <link rel="stylesheet" href="home-styles.css">
     <link rel="shortcut icon" href="#">
     <title>Music Streamer</title>
 </head>
@@ -101,13 +101,15 @@ const uid = '${uid}';
         
         	<div class="back-button">
                 <!-- <h4>Top Albums</h4> -->
-                <button id="backbutton"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></button>
+                <button id="backbutton"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i> 
+                <span class="col-lg-12 text-light font-weight-bold text-capitalize" id="current-song-album" ></span>
+                </button>
             </div>
         
             <button class="mob-albums-list">Trending</button>
             <div class="lang-select-loading">
             	<div class="album-name-img">
-                <div class="col-lg-12 text-light font-weight-bold text-capitalize" id="current-song-album" style="display: block;">Orange</div>
+               
                 <div class="col-lg-12 current-song-img">
                     <img src="https://thumbs.gfycat.com/ChubbyIlliterateCanadagoose-small.gif" id="current-song-img" style="max-width: 250px; border-radius: 30px; max-height: 250px;" alt="Loading..">
                 </div>
@@ -185,7 +187,7 @@ const uid = '${uid}';
    
     -->
 
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
 
 
 </body>

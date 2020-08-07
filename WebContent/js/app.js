@@ -1,4 +1,5 @@
 // all global variables
+
 songids = [];
 songnames = [];
 let languages;
@@ -170,7 +171,7 @@ $(document).on('click', '#backbutton', backbutton);
         temp = e.target;
 
         document.getElementById('current-song-album').innerHTML = button.name;
-        document.getElementById('current-song-album').style.display = "block";
+        document.getElementById('current-song-album').style.display = "inline-block";
 
         var language = this.parentElement.parentElement.parentElement.classList[1];
 

@@ -307,6 +307,10 @@ input[type="range"] {
   text-align: left;
   margin-top: 10px;
  }
+
+ #backbutton i{
+ width:auto;
+ }
   
   
   #current-song-title {
@@ -391,6 +395,7 @@ input[type="range"] {
   #current-song-album {
       font-size: 21px;
       padding: 5px;
+      width:auto;
   }
   
   .current-song-img {
@@ -837,4 +842,6 @@ input[type="range"] {
           transform: scale(1.3);
       }
   }
+  
+
   
