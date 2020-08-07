@@ -200,18 +200,19 @@ public class LoginDao {
     	return false;
     }
     
- public boolean changePassword(String email,String pass) {
+ public boolean changePassword(String email,String pass,String otp) {
     	
     	try {	
     		Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
     		String securedpass= get_SHA_256_SecurePassword(pass);
     		
-    		String update="update users set password=? where email=?";
+    		String update="update users set password=? where email=? and otp=?";
     		PreparedStatement updatestmt = con.prepareStatement(update);
     		System.out.println(securedpass+"   "+securedpass.length());
     		updatestmt.setString(1, securedpass);
     		updatestmt.setString(2, email);
+    		updatestmt.setString(3, otp);
     		int rs=updatestmt.executeUpdate();
     		System.out.println(rs);
     		if(rs>0){

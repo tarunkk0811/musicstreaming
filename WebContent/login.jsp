@@ -67,7 +67,7 @@ else
     
     
     <div style="text-align: center;">
-    <p class="ins">  <a id="fp" href="forgotpassword.jsp">Forgot password</a></p>
+    <p class="ins">  <a id="fp" href="forgotpassword.jsp">Forgot password ?</a></p>
     </div>
     <input id='hidethis' class="loginLoginValue" type="hidden" name="service" value="login" />
   </div>

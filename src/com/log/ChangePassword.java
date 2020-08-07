@@ -25,9 +25,11 @@ public class ChangePassword extends HttpServlet {
 		String email=request.getParameter("username");
 		String pass=request.getParameter("pass");
 		String conpass=request.getParameter("conpass");
+		String otp=request.getParameter("otp");
+		
 		if(conpass.equals(pass) && pass.length()>=8 ) {
 			LoginDao login = new LoginDao();
-			res=login.changePassword(email, pass);		
+			res=login.changePassword(email, pass,otp);		
 		}
 		if(res) {
 			request.setAttribute("message","Password changed");
