@@ -25,6 +25,7 @@
 	const langContent = document.querySelector(".lang-select-loading");
 	const card = document.getElementsByClassName("card-div");
 	var temp;
+	var allsongs;
 	document.getElementById("backbutton").style.display="none";
 	// added varibles
 
@@ -56,10 +57,42 @@
             success: function(responseText) {
 	            $('#albums').html(responseText);
 				$('#albums').fadeIn(400);
+				
             }
         });
 			
 	}
+	
+	let favs=(temp,mess) =>{
+			$.ajax({
+			url:'Favourites',
+			data:{
+				mes: mess,
+		   	 	sid : $(temp).val(),
+		    	uidd : uid
+			},
+			success:function(responseText){
+				if(mess=="get"){
+			   $('#recent').html(responseText);
+				$('#recent').fadeIn(300);
+				}
+			}			
+		});
+		
+	}
+	
+	let renderRecents=() =>{
+		$.ajax({
+				 url: 'RecentlyPlayed',
+				data: {
+						uidd : uid
+			    	},
+		    		success: function(responseText) {
+		        		$('#recent').html(responseText);
+						$('#recent').fadeIn(300);
+		    	}
+			});
+	} 
 	
 $(document).on('click','#backbutton',backbutton);
 	
@@ -71,16 +104,9 @@ $(document).ready(function() {
 	    document.getElementById('current-song-album').style.display = "none";
 		
 	$(document).ready(function(){
-			$.ajax({
-				 url: 'RecentlyPlayed',
-				data: {
-						uidd : uid
-			    	},
-		    		success: function(responseText) {
-		        		$('#recent').html(responseText);
-		    	}
-			}); 
-				
+			////////////////////////////////////////////////////////////////////// 
+			  renderRecents();
+	
 			  $.ajax({
 		        url: 'Languages',
 		        data: {
@@ -140,24 +166,8 @@ $(document).ready(function() {
 		languages(lang.value,source="fromtop");
 	
 	});
-	
-	
-	/*   $(document).on("change", "#langs", function() {
-			
-	        $.ajax({
-	            url: 'Albums',
-	            data: {
-	                langclicked: $(this).val()
-	            },
-	            success: function(responseText) {
-
-	                $('#albums').html(responseText);
-	            }
-	        });
-
-	    });
-*/
 	    
+
 
 	    $(document).on("click", "#albumbutton", function(e) {
 			
@@ -217,6 +227,7 @@ $(document).ready(function() {
 	    });
 
 	$(document).on('click','#fav',function(){
+		console.log(this);
 		var icon=this.firstElementChild;
 		if(icon.classList.contains("fa-heart")){
 			this.innerHTML='<i class="fa fa-heart-o"  aria-hidden="true"></i>';
@@ -225,18 +236,20 @@ $(document).ready(function() {
 			this.innerHTML='<i class="fa fa-heart" style="color: #ff1e1e;" aria-hidden="true"></i>';
 		}
 		
-		$.ajax({
-			url:'Favourites',
-			data:{
-		   	 	sid :$(this).val(),
-		    	uidd : uid
-			},
-			success:function(responseText){
-				
-			}			
-		});
+		favs(this,"post");
 	
 	});
+
+$(document).on('click','#fav-tab',function(){
+$('#recent').fadeOut(500);	
+favs(this,"get");
+});
+
+
+$(document).on('click','#recent-tab',function(){
+$('#recent').fadeOut(400);	
+renderRecents();
+});
 
 
 //document.getElementById('songlist').children[1].getElementsByTagName('button')[0].id
@@ -329,16 +342,21 @@ $(document).ready(function() {
 
 
 	
-	function playSong(id, name) {
+	function playSong(id, name,classname="") {
+		//set if song is favourite
 		var k = document.getElementById('fav');
 		document.querySelector('.bottom-fav').innerHTML=k.innerHTML;
 		document.querySelector('.bottom-fav').value=k.value;
+		//loading animation starts
 		play.classList.add("song-load")
 		seekBar.disabled=false;
+		
 	    document.getElementById('current-song-title').innerText = name;
 		document.getElementById('current-song-title-mob').innerText = name;
 		document.title=name;
+		
 	    var songurl = document.getElementsByClassName(id)[0].value;
+
 	    document.getElementById('play-song').innerHTML = "<audio controls class='" + name + "' id='current-song'><source src=" + songurl + " type='audio/mpeg'></audio>";
 		
 	    current_song = document.getElementById("current-song");
@@ -355,13 +373,16 @@ $(document).ready(function() {
             current_song.onplay = songPlaying;
             seekBar.max = current_song.duration;
 	    }
-	    songids.length = 0;
+	   
+		if(classname!=""){
+		songids.length = 0;
 	    songnames.length = 0;
-	    var allsongs = document.getElementsByClassName('album-song-name-btn');
+	    allsongs = document.getElementsByClassName(classname);
 	    for (var i = 0; i < allsongs.length; i++) {
 	        songids.push(allsongs[i].id);
 	        songnames.push(allsongs[i].value);
 	    }
+		}
 	};
 
 	// mute
@@ -429,9 +450,9 @@ $(document).ready(function() {
 
 	    if (idx == alblen - 1) {
 	        idx = 0;
-	        playSong(songids[idx], songnames[idx]);
+	        playSong(songids[idx], songnames[idx],"");
 	    } else {
-	        playSong(songids[idx + 1], songnames[idx + 1]);
+	        playSong(songids[idx + 1], songnames[idx + 1],"");
 	    }
 	}
 	};

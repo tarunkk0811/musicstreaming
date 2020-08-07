@@ -327,6 +327,8 @@ public class SetMusicDao {
 				
 				statement.setInt(1, uid);
 				statement.setString(2, sid);
+				
+				
 				int re = statement.executeUpdate();
 				con.close();
 				if(re>0) {

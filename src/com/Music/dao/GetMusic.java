@@ -82,7 +82,7 @@ public class GetMusic {
 	
 	public String getSongs(String aid,int uid) {
 		String s="";
-		String fav="<i class='fa fa-heart-o' aria-hidden='true'></i>";
+		
 		//System.out.print("Entered songs");
 		try {	
 			Class.forName("org.postgresql.Driver");
@@ -97,7 +97,7 @@ public class GetMusic {
 			ResultSet res = stmt.executeQuery();
 			
 			while(res.next()){
-				
+				String fav="<i class='fa fa-heart-o' aria-hidden='true'></i>";
 				String sid = res.getString(1);
 				String snames=res.getString(2);
 				String sname = snames.substring(0, 1).toUpperCase() + snames.substring(1).toLowerCase();
@@ -112,7 +112,7 @@ public class GetMusic {
 					fav="<i class=\"fa fa-heart\" style=\"color: #ff1e1e;\" aria-hidden=\"true\"></i>";
 				}
 				
-				s+="<li id='songlist' class='album-songs-list'><p class='music-icon'><i class='fa fa-music' aria-hidden='true'></i></span></p><p id='each_song' class='song-details'><span class='song-name'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button></span><!--<span class='tech-details'> Music director . singers . film</span>--></p><p class='song-fav-icon'> <button value='"+sid+"' id='fav' >"+fav+" </button> </p></li>"
+				s+="<li id='songlist' class='album-songs-list'><p class='music-icon'><i class='fa fa-music' aria-hidden='true'></i></span></p><p id='each_song' class='song-details'><span class='song-name'><button id='"+sid+"' class='album-song-name-btn asongs' value='"+sname+"' onClick=playSong(this.id,this.value,this.className)  >"+sname+"</button></span><!--<span class='tech-details'> Music director . singers . film</span>--></p><p class='song-fav-icon'> <button value='"+sid+"' id='fav' >"+fav+" </button> </p></li>"
 						+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
 				   
 				
@@ -153,7 +153,7 @@ public class GetMusic {
 					String song_url=res.getString(3);
 					
 					
-				s+="<li id='each_song' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button> </li>"
+				s+="<li id='each_song' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn rsongs' value='"+sname+"' onClick=playSong(this.id,this.value,this.className)  >"+sname+"</button> </li>"
 							+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
 				}
 		
@@ -188,7 +188,7 @@ public class GetMusic {
 					String sname = ssname.substring(0, 1).toUpperCase() + ssname.substring(1).toLowerCase();
 					String song_url=res.getString(3);
 					
-				s+="<li id='songlist' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn' value='"+sname+"' onClick=playSong(this.id,this.value)  >"+sname+"</button> </li>"
+				s+="<li id='songlist' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn tsongs' value='"+sname+"' onClick=playSong(this.id,this.value,this.className)  >"+sname+"</button> </li>"
 							+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
 				}
 		
@@ -317,7 +317,7 @@ public class GetMusic {
 						+ " <input id='"+aid+"' type='hidden' value='"+posurl+"' />"
 						+ "</div>";
 			}
-			
+			con.close();
 		}
 		catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -327,6 +327,38 @@ public class GetMusic {
 		return results;
 	}
 	
-	
+	public String getFavs(int uid) {
+		String s="";
+		
+		
+		try {	
+			Class.forName("org.postgresql.Driver");
+			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
+			
+			String fav_res_query = "select s.sid,s.sname,s.song_url from favourites f,songs s where f.uid=? and s.sid=f.sid";
+			PreparedStatement stmt = con.prepareStatement(fav_res_query);
+			stmt.setInt(1, uid);
+			ResultSet fav_res = stmt.executeQuery();
+			while(fav_res.next()) {
+				
+				String sid=fav_res.getString(1);
+				String ssname=fav_res.getString(2);
+				String sname = ssname.substring(0, 1).toUpperCase() + ssname.substring(1).toLowerCase();
+				String song_url=fav_res.getString(3);
+				
+				
+			s+="<li id='each_song' class='album-songs-list'><button id='"+sid+"' class='album-song-name-btn fsongs' value='"+sname+"' onClick=playSong(this.id,this.value,this.className)  >"+sname+"</button> </li>"
+						+ "<input class='"+sid+"' type='hidden' value='"+song_url+"'>";
+				
+			}
+			con.close();
+	}
+		catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return s;
 
+	}
+	
 }

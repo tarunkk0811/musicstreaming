@@ -27,6 +27,7 @@
     
     
 <meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="icon" href="css/music.png" type="image/icon type">
 <link rel="stylesheet" href="css/login-css.css">
 <meta charset="ISO-8859-1">
 <meta name="theme-color" content="#343a40">

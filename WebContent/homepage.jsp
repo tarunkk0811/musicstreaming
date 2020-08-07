@@ -17,7 +17,7 @@
     <script src="https://use.fontawesome.com/bae75bb48f.js"></script>
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <link rel="icon" href="css/music.png" type="image/icon type">
     <link rel="stylesheet" href="home-styles.css">
     <link rel="shortcut icon" href="#">
     <title>Music Streamer</title>
@@ -121,9 +121,14 @@ const uid = '${uid}';
         </div>
 
         <div class="sideBars recent col-lg-2">
-            <p>Recently played
-                <span id="recent-close"><button><i class="fa fa-times" style="color: white;" aria-hidden="true"></i></button></span>
-            </p>
+				        
+        <p class="recent-fav">
+            <span id="recent-tab"><button>Recent</button></span>
+           
+            <span id="fav-tab"><button>Favourites</button></span>
+           
+            <span id="recent-close"><button><i class="fa fa-times" style="color: white;" aria-hidden="true"></i></button></span>
+        </p>
 			<div id="recent" style="border-bottom:0px;">
 			</div>
 
@@ -179,7 +184,7 @@ const uid = '${uid}';
    
     -->
 
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
 
 
 </body>
