@@ -4,6 +4,7 @@
       font-family: 'Karla', sans-serif;
   }
 button {
+	
       border: 0px;
       background-color: transparent;
       color: white;
@@ -99,7 +100,7 @@ button {
   }
   
   .album-btn:hover {
-      color: lightgreen;
+      color: light;
   }
   
   .album-song-name-btn,
@@ -115,7 +116,7 @@ button {
   }
   
   .album-song-name-btn:hover {
-      color: rgba(61, 230, 61, 0.712);
+      color: lightskyblue;
   }
   
   .song-fav-icon button:hover i {
@@ -134,7 +135,6 @@ button {
   
   .sideBars p {
       font-size: 19px;
-      font-weight: bold;
       padding: 5px 1px;
       margin: 3px 0px;
       border-bottom: 2px solid rgb(62, 62, 231);
@@ -152,7 +152,7 @@ button {
   }
   
   .sideBars div button:focus {
-      color: lightgreen;
+      color: lightskyblue;
   }
   
   .first-row {
@@ -405,7 +405,7 @@ input[type="range"] {
       overflow-y: scroll;
       overflow-x: hidden;
       z-index: 999;
-      width: 40%;
+      width: 35%;
       background-color: rgb(58, 57, 57);
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
@@ -483,7 +483,7 @@ input[type="range"] {
       width:auto;
   }
   
- div.search-section {
+ .search-section {
   width : 40%;
   }
   
@@ -682,6 +682,7 @@ input[type="range"] {
           
       }
       .search-section {
+      	  margin-top:5px;
           width: 100%;
       }
       .album-card {
@@ -789,22 +790,10 @@ input[type="range"] {
       border-radius: 8px;
   }
   
-  .recent-fav {
+  .recent-fav {	
       display: flex;
       align-items: center;
       justify-content: center;
-  }
-  
-  #recent-tab::after {
-      content: '';
-      border-right: 1px solid lightgray;
-      border-radius: 10px;
-  }
-  
-  #fav-tab::before {
-      content: '';
-      border-left: 1px solid lightgray;
-      border-radius: 10px;
   }
   
   #recent-tab,
@@ -812,15 +801,25 @@ input[type="range"] {
       transition: all 2s;
       border-radius: 5px;
   }
+  #recent-tab button,#trend{
+  color:dodgerblue;
+  }
   
   #recent-tab:hover {
       background-color: lightslategray;
+  }
+  
+  #recent-tab:hover button[disabled]{
+      color:white;
   }
   
   #fav-tab:hover {
       background-color: lightslategray;
   }
   
+   #fav-tab:hover button[disabled]{
+      color: white;
+  }
   #albums-close button:hover,
   #recent-close button:hover {
       animation: spin 2s 1;

@@ -88,7 +88,7 @@ const uid = '${uid}';
     </nav>
     <div class="first-row row mx-auto">
         <div class="sideBars albums-list col-lg-2 col-12">
-            <p> <span>Trending</span>
+            <p> <span id='trend'>Trending</span>
                 <span id="albums-close"><button><i class="fa fa-times" style="color: white;" aria-hidden="true"></i></button></span>
             </p>
             <div id="albums" style="border-bottom:0px;">
@@ -123,7 +123,7 @@ const uid = '${uid}';
         <div class="sideBars recent col-lg-2">
 				        
         <p class="recent-fav">
-            <span id="recent-tab"><button>Recent</button></span>
+            <span id="recent-tab"><button disabled>Recent</button></span>
            
             <span id="fav-tab"><button>Favourites</button></span>
            
@@ -141,7 +141,7 @@ const uid = '${uid}';
             <div class="current-song-details mx-left">
                 <img src="https://cdn.dribbble.com/users/1526471/screenshots/3709702/equalizer.gif" id="current-song-img" style="max-width: 80px; height: 80px;" alt="Loading..">
                 <span id="current-song-title"></span>
-                <span class="song-fav-icon"><button class="bottom-fav" value='' id='fav'><i class="fa fa-heart-o" aria-hidden="true"></i></button></span>
+                <!-- <span class="song-fav-icon"><button class="bottom-fav" value='' id='fav'><i class="fa fa-heart-o" aria-hidden="true"></i></button></span> -->
             </div>
             <center>
                 <div class="control-buttons mx-auto centered">

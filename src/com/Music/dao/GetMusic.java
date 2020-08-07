@@ -313,7 +313,7 @@ public class GetMusic {
 				String posurl=song_res.getString(4);
 				String lid=song_res.getString(5);
 				results+="<div>"
-						+ "<button name='"+aname+"' class='album-btn "+lid+"' id='albumbutton' value='"+aid+"'>"+ sname+"<sub>  &nbsp&nbsp&nbsp("+aname+")</sub> </button>"
+						+ "<button name='"+aname+"' class='album-btn "+lid+"' id='albumbutton' value='"+aid+"'>"+ sname+"  &nbsp&nbsp&nbsp("+aname+") </button>"
 						+ " <input id='"+aid+"' type='hidden' value='"+posurl+"' />"
 						+ "</div>";
 			}
@@ -335,7 +335,7 @@ public class GetMusic {
 			Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url,dbuname,dbpass);
 			
-			String fav_res_query = "select s.sid,s.sname,s.song_url from favourites f,songs s where f.uid=? and s.sid=f.sid";
+			String fav_res_query = "select s.sid,s.sname,s.song_url from favourites f,songs s where f.uid=? and s.sid=f.sid order by fid desc";
 			PreparedStatement stmt = con.prepareStatement(fav_res_query);
 			stmt.setInt(1, uid);
 			ResultSet fav_res = stmt.executeQuery();

@@ -175,6 +175,7 @@ $(document).ready(function() {
 			var urlid = $(this).val();
 	        var button = e.target;
 			temp=e.target;
+			
 	        document.getElementById('current-song-album').innerHTML = button.name;
 	        document.getElementById('current-song-album').style.display = "block";
 			
@@ -242,14 +243,25 @@ $(document).ready(function() {
 	});
 
 $(document).on('click','#fav-tab',function(){
+$('#recent-tab button').prop("disabled",false);
+$('#fav-tab button').prop("disabled",true);
 $('#recent').fadeOut(500);	
 favs(this,"get");
+$('#fav-tab button').css("color","dodgerblue");
+$('#recent-tab button').css("color","white");
 });
 
 
 $(document).on('click','#recent-tab',function(){
+$('#fav-tab button').prop("disabled",false);
+$('#recent-tab button').prop("disabled",true);
 $('#recent').fadeOut(400);	
 renderRecents();
+$('#recent-tab button').css("color","dodgerblue");
+$('#fav-tab button').css("color","white");
+
+
+
 });
 
 
@@ -274,35 +286,6 @@ renderRecents();
 
 });
 
-
-/*
-	var playpause = () => {
-	
-	    updatePlayTime();
-	    if (current_song.currentSrc !== "") {
-	        let minutes = parseInt(current_song.duration / 60, 10);
-	        let seconds = parseInt(current_song.duration % 60);
-	        document.getElementById("play-end").innerText = minutes + ':' + seconds;
-
-	        if (current_song.paused) {
-	            current_song.play();
-	            play.innerHTML = '<i class="fa fa-pause fa-lg" aria-hidden="true"></i>';
-	        } else {
-	            current_song.pause();
-	            play.innerHTML = '<i class="fa fa-play fa-lg" aria-hidden="true"></i>';
-	        }
-	    }
-	}
-
-	// update seek bar
-	let updateSeekBar = () => {
-
-	    seekBar.value = current_song.currentTime;
-		
-		
-	}
-	
-*/
 
 // toggle play pause
     let playpause = () => {
@@ -346,9 +329,9 @@ renderRecents();
 	function playSong(id, name,classname="") {
 		
 		//set if song is favourite
-		var k = document.getElementById('fav');
+		/*var k = document.getElementById('fav');
 		document.querySelector('.bottom-fav').innerHTML=k.innerHTML;
-		document.querySelector('.bottom-fav').value=k.value;
+		document.querySelector('.bottom-fav').value=k.value;*/
 		//loading animation starts
 		play.classList.add("song-load")
 		seekBar.disabled=false;
