@@ -1,4 +1,4 @@
-alert('hi');
+//alert('hi');
 	// all global variables
 	songids = [];
 	songnames = [];
