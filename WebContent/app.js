@@ -1,4 +1,4 @@
-
+alert('hi');
 	// all global variables
 	songids = [];
 	songnames = [];
@@ -25,6 +25,7 @@
 	const langContent = document.querySelector(".lang-select-loading");
 	const card = document.getElementsByClassName("card-div");
 	var temp;
+	let muted=false;
 	var allsongs;
 	document.getElementById("backbutton").style.display="none";
 	// added varibles
@@ -343,6 +344,7 @@ renderRecents();
 
 	
 	function playSong(id, name,classname="") {
+		
 		//set if song is favourite
 		var k = document.getElementById('fav');
 		document.querySelector('.bottom-fav').innerHTML=k.innerHTML;
@@ -360,6 +362,12 @@ renderRecents();
 	    document.getElementById('play-song').innerHTML = "<audio controls class='" + name + "' id='current-song'><source src=" + songurl + " type='audio/mpeg'></audio>";
 		
 	    current_song = document.getElementById("current-song");
+		if(muted){
+			 mute.innerHTML = '<i style="color:red;" class="fa fa-volume-off fa-lg" aria-hidden="true"></i>';
+	        current_song.muted = true;
+	        current_song.volume = 0;
+			updateVolume();
+		}
 	    current_song.oncanplay = () => {
             let minutes = parseInt(current_song.duration / 60, 10);
             let seconds = parseInt(current_song.duration % 60);
@@ -388,10 +396,12 @@ renderRecents();
 	// mute
 	let muteUnmute = () => {
 	    if (current_song.muted) {
+			muted=false;
 	        mute.innerHTML = '<i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>';
 	        current_song.muted = false;
 	        current_song.volume = 1;
 	    } else {
+			muted=true;
 	        mute.innerHTML = '<i style="color:red;" class="fa fa-volume-off fa-lg" aria-hidden="true"></i>';
 	        current_song.muted = true;
 	        current_song.volume = 0;
