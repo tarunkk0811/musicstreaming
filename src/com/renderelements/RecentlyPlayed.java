@@ -29,7 +29,7 @@ public class RecentlyPlayed extends HttpServlet {
 		SetMusicDao sm = new SetMusicDao();
 		if(sid== null);
 		else {
-		boolean res=sm.setRecents(uid, sid);
+		sm.setRecents(uid, sid);
 		}
 		GetMusic gm = new GetMusic();
 		String result = gm.getRecents(uid);
