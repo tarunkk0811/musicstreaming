@@ -40,7 +40,7 @@ const uid = '${uid}';
 
 
  <nav class="navbar navbar-dark bg-dark navbar-expand-md">
-        <a href="homepage.jsp" class="navbar-brand">Music Streamer</a>
+        <a id='titlename' href="#" class="navbar-brand">Music Streamer</a>
         <button
           class="navbar-toggler"
           data-toggle="collapse"
@@ -101,7 +101,8 @@ const uid = '${uid}';
         
         	<div class="back-button">
                 <!-- <h4>Top Albums</h4> -->
-                <button id="backbutton"><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i> 
+                <button id="backbutton">
+                <i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i> 
                 <span class="col-lg-12 text-light font-weight-bold text-capitalize" id="current-song-album" ></span>
                 </button>
             </div>
@@ -187,7 +188,7 @@ const uid = '${uid}';
    
     -->
 
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
 
 
 </body>

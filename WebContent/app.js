@@ -96,6 +96,13 @@ let renderRecents = () => {
     });
 }
 
+
+// Event for backbutton
+document.getElementById("titlename").addEventListener('click',func =>{
+	$('#backbutton').click();
+})
+
+
 $(document).on('click', '#backbutton', backbutton);
 
     $(document).ready(function() {
@@ -312,9 +319,12 @@ $(document).on('click', '#backbutton', backbutton);
 
     // on keypress of spacebar playpause() is called
     window.addEventListener('keypress', key => {
-        if (key.which === 32)
+	sb=document.getElementById('search-bar');
+    if (key.which === 32 && document.activeElement!=sb)
             playpause();
     })
+
+
 
 
 
