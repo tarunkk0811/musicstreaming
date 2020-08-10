@@ -79,7 +79,7 @@ const uid = '${uid}';
                  <form action="Logout" method="post" ><input class="dropdown-item"  type="submit" value="Logout"/></form>
                   <% if(session.getAttribute("role")==null); 
                   else if(session.getAttribute("role").equals("admin")){%>
-                  <a class="dropdown-item" href="admin.jsp">admin page</a>
+                  <a class="dropdown-item" href="admin.jsp"><strong>Admin</strong></a>
                   <%}%>
                 </div>
               </li>

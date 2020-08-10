@@ -2,7 +2,6 @@
 var form = document.forms[0];
 var timer = 30;
 
-
 let loadingBtn = (load_msg) => {
             let btn = form.getElementsByTagName('button')[0];
             btn.disabled = true;
@@ -98,7 +97,10 @@ if(validateEmail()&& validatePassword()){
 else{
 	document.getElementById('accesspanel').style.height="360px";
 	document.getElementById('message').style.color="red";
-	document.getElementById('message').innerText="Invalid Email or Password";
+	if(form["password"].value.length<8)
+	document.getElementById('message').innerText="Password must be 8 characters";
+	else
+	document.getElementById('message').innerText="Invalid Email";
 }
 
 });
