@@ -1,4 +1,5 @@
 //  web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyDgV2iFniMS_x1A7Vczs-cpPAL4V73erhs",
   authDomain: "fir-8ed58.firebaseapp.com",
@@ -9,8 +10,16 @@ const firebaseConfig = {
   appId: "1:577484619041:web:e6020550efcfea2bcb9260",
   measurementId: "G-RMVX82TEWD"
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().signInWithEmailAndPassword("tarunkk0811@gmail.com", "qwertyuiop").catch(function(error) {
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  console.log(errorMessage+" "+errorCode);
+});
+
+
 
 var files = [];
 document.getElementById("files").addEventListener("change", function(e) {
@@ -63,9 +72,6 @@ posterfiles=[];
 
 document.getElementById("posterfiles").addEventListener("change", function(e) {
   posterfiles = e.target.files;
-  for (let i = 0; i < posterfiles.length; i++) {
-    console.log(posterfiles[i]);
-  }
 });
 document.getElementById("sendposter").addEventListener("click", function() {
   //checks if files are selected
@@ -93,7 +99,6 @@ document.getElementById("sendposter").addEventListener("click", function() {
 		
         function complete() {
 		  getFileUrl(path,"posterurl");
-          document.getElementById("uploadingposter").innerHTML += `${posterfiles[i].name} uploaded <br />`;
         }	
       );
     }
@@ -113,9 +118,8 @@ function getFileUrl(path,id) {
     .getDownloadURL()
     .then(function(url) {
 	document.getElementById(id).value+=url;
-      console.log(url);  
     }).catch(function(error) {
-      console.log("error encountered");
+      console.log("error encountered in getting file url");
     });
 }
 

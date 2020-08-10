@@ -18,7 +18,7 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="icon" href="css/music.png" type="image/icon type">
-    <link rel="stylesheet" href="home-styles.css">
+    <link rel="stylesheet" href="css/home-styles.css">
     <link rel="shortcut icon" href="#">
     <title>Music Streamer</title>
 </head>
