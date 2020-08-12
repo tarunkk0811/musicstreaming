@@ -174,6 +174,8 @@ $(document).on('click', '#backbutton', backbutton);
     $(document).on("click", "#albumbutton", function(e) {
 
         var urlid = $(this).val();
+		console.log(this);
+		
         var button = e.target;
         temp = e.target;
 
@@ -191,8 +193,12 @@ $(document).on('click', '#backbutton', backbutton);
             languages(language);
         }
 
+		//some thng is hpng here
         var url = document.getElementById(urlid).value;
-
+		/*console.log(document.getElementById(urlid));
+		while(document.getElementById(urlid)==null)
+		console.log(document.getElementById(urlid));
+*/
         document.getElementById('current-song-img').src = url;
 
 
@@ -356,6 +362,15 @@ $(document).on('click', '#backbutton', backbutton);
         current_song.oncanplay = () => {
             let minutes = parseInt(current_song.duration / 60, 10);
             let seconds = parseInt(current_song.duration % 60);
+
+			 if (minutes < 10) {
+            	minutes = '0' + minutes.toString();
+      		  }
+
+        	 if (seconds < 10) {
+            	seconds = '0' + seconds.toString();
+        	  }
+
             document.getElementById("play-end").innerText = minutes + ':' + seconds;
             if (current_song.paused)
                 current_song.play();

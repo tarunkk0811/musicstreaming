@@ -33,16 +33,6 @@ let validatePassword = () => {
 
 
 
-    window.addEventListener('keypress', key => {
-			
-    })
-
-
-
-
-
-
-
 function sendotp(){
 		
 		let countDownResend = setInterval(()=>{
