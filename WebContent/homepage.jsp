@@ -4,8 +4,7 @@
 <html><head>
     <meta charset="ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#343a40">
-    
+    <meta name="theme-color" content="#343a40">   
     <!-- Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla|Archivo|Roboto">
     <!--jQuery-->
@@ -18,12 +17,11 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="icon" href="css/music.png" type="image/icon type">
-    <link rel="stylesheet" href="css/home-styles.css">
+    <link rel="stylesheet" href="home-styles.css">
     <link rel="shortcut icon" href="#">
     <title>Music Streamer</title>
 </head>
 <body>
-
 <%
 response.setHeader("cache-control","no-cache, no-store, must-revalidate");//http 1.1
 response.setHeader("Pragma","no-cache");//http 1.0
@@ -37,8 +35,6 @@ if(session.getAttribute("uid")==null){
 <script>
 const uid = '${uid}';
 </script>
-
-
  <nav class="navbar navbar-dark bg-dark navbar-expand-md">
         <a id='titlename' href="#" class="navbar-brand">Music Streamer</a>
         <button
@@ -134,6 +130,7 @@ const uid = '${uid}';
             <span id="recent-close"><button><i class="fa fa-times" style="color: white;" aria-hidden="true"></i></button></span>
         </p>
 			<div id="recent" style="border-bottom:0px;">
+			
 			</div>
 
         </div>

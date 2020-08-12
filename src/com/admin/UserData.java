@@ -21,10 +21,10 @@ public class UserData extends HttpServlet {
  
     public UserData() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.print(request.getAttribute("uid"));
 		PrintWriter out = response.getWriter();
 		  String url="jdbc:postgresql://ec2-52-6-143-153.compute-1.amazonaws.com:5432/de4qcm5vtmrvmg";
 		     String dbuname="wpuztkpsfnclqf";
@@ -42,7 +42,7 @@ public class UserData extends HttpServlet {
 		try {	
     		Class.forName("org.postgresql.Driver");
     		Connection con = DriverManager.getConnection(url,dbuname,dbpass);
-        	String get_details="select uid,name,email,role,status,date(created_on) from users";
+        	String get_details="select uid,name,email,role,status,date(created_on) from users order by uid";
     		PreparedStatement getstmt = con.prepareStatement(get_details);
     		ResultSet rs = getstmt.executeQuery();
     		while(rs.next()){
@@ -50,17 +50,22 @@ public class UserData extends HttpServlet {
     				String name=rs.getString(2);
     				String email=rs.getString(3);
     				String role=rs.getString(4);
+    				String op;
+    				if(role.equals("admin"))
+    					op="<button id='makeadmin'>Delete as Admin</button>";
+    				else
+    					op="<button id='makeadmin'>Make Admin</button>";
     				Boolean status=rs.getBoolean(5);
     				Date date = rs.getDate(6);
     				s+="\r\n" + 
     						"<tr>\r\n" + 
-    						"<td>"+uid+"</td>\r\n" + 
+    						"<td id='uid'>"+uid+"</td>\r\n" + 
     						"<td>"+name+" </td>\r\n" + 
     						"<td>"+email+"</td>\r\n" + 
     						"<td>"+role+"</td>\r\n" + 
     						"<td>"+status+"</td>\r\n" + 
     						"<td>"+date+"</td>\r\n" +
-    						"<td><i class=\"fa fa-trash\"></i></td>\r\n" +
+    						"<td><button id='del'> <i class=\"fa fa-trash\"></i> </button> "+op+ "</td>\r\n" +
     						"</tr>\r\n";
     						 
     			

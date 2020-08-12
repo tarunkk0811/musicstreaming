@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+table td,table th {
+    padding: 10px;
+}
+</style>
 <meta charset="ISO-8859-1">
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,7 +20,7 @@
 	
 <title>User Management</title>
 </head>
-<body><%-- 
+<body>
 <%
 response.setHeader("cache-control","no-cache, no-store, must-revalidate");//http 1.1
 response.setHeader("Pragma","no-cache");//http 1.0
@@ -30,7 +35,7 @@ else{
 	request.setAttribute("message","session invalid");
 		response.sendRedirect("homepage.jsp");		
 }
-%> --%>
+%> 
 
 <div>
 <center>
@@ -38,7 +43,7 @@ else{
 </center>
 <a href="addstaff.jsp">Add Admin</a>
 <center>
-<table class="table table-bordered" id='userdata'>
+<table class="table table-hover" id='userdata'>
 <tr>
 <th>User Id</th>
 <th>User Name</th>
@@ -55,15 +60,41 @@ else{
 </div>
 
 <script>
+var id;
+var row;
+var temp;
 $(document).ready(function() { 
-		
 			$.ajax({
 				 url: 'UserData',	
+				 data:{
+					 uid:
+				 },
 	    		success: function(responseText) {
 		        		$('#userdata').html(responseText);
 		    	}
 			});
-	}); 
+});
+$(document).on('click','#makeadmin',function(){
+	if(this.innerText.split(" ")[0]=="Make")
+		this.innerText="Delete as Admin";
+	else
+		this.innerText="Make Admin";
+		
+	row = $(this).parent().parent();
+	id=row.get(0).textContent.split('\n')[1];
+	$.ajax({
+		 url: 'MakeAdmin',
+		 method: "post",
+		 data:{
+			 uid:id
+		 },
+		success: function(responseText) {
+       		
+   	}
+	});
+	
+})
+
 </script>
 
 </body>

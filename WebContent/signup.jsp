@@ -52,7 +52,7 @@ else
 <div class="background-wrap">
   <div class="background"></div>
 </div>
-<form id="accesspanel" name='signupform' action="VerifyUser" method="POST" style="height: 350px;">
+<form id="accesspanel" name='signupform' action="VerifyUser" method="POST" style="height: 355px;">
   <h1 id="litheader">Music Streamer</h1>
   <div class="inset">
 
