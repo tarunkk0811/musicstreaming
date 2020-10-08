@@ -1,5 +1,4 @@
 // all global variables
-
 songids = [];
 songnames = [];
 let languages;
@@ -105,10 +104,10 @@ document.getElementById("titlename").addEventListener('click',func =>{
 
 $(document).on('click', '#backbutton', backbutton);
 
-    $(document).ready(function() {
-    ////////////////////////////////////////////////////////////////////// 
-    renderRecents();
 
+
+    $(document).ready(function() { 
+    renderRecents();
     $.ajax({
         url: 'Languages',
         data: {
@@ -174,17 +173,16 @@ $(document).on('click', '#backbutton', backbutton);
     $(document).on("click", "#albumbutton", function(e) {
 
         var urlid = $(this).val();
-		console.log(this);
-		
+		//console.log(this);
         var button = e.target;
+		
         temp = e.target;
-
         document.getElementById('current-song-album').innerHTML = button.name;
         document.getElementById('current-song-album').style.display = "inline-block";
 
         var language = this.parentElement.parentElement.parentElement.classList[1];
 
-        if (language === "search-section") {
+        if (language === "search-section"){
             language = this.classList[1];
             search_results.innerHTML = "";
         }
@@ -193,16 +191,8 @@ $(document).on('click', '#backbutton', backbutton);
             languages(language);
         }
 
-		//some thng is hpng here
         var url = document.getElementById(urlid).value;
-		/*console.log(document.getElementById(urlid));
-		while(document.getElementById(urlid)==null)
-		console.log(document.getElementById(urlid));
-*/
         document.getElementById('current-song-img').src = url;
-
-
-
 
         $.ajax({
             url: 'Songs',
@@ -341,13 +331,16 @@ $(document).on('click', '#backbutton', backbutton);
         document.querySelector('.bottom-fav').innerHTML=k.innerHTML;
         document.querySelector('.bottom-fav').value=k.value;*/
         //loading animation starts
+		
         play.classList.add("song-load")
+
         seekBar.disabled = false;
 
         document.getElementById('current-song-title').innerText = name;
         document.getElementById('current-song-title-mob').innerText = name;
         document.title = name;
-
+		
+		
         var songurl = document.getElementsByClassName(id)[0].value;
 
         document.getElementById('play-song').innerHTML = "<audio controls class='" + name + "' id='current-song'><source src=" + songurl + " type='audio/mpeg'></audio>";
@@ -489,9 +482,9 @@ $(document).on('click', '#backbutton', backbutton);
         // let lenCards = albumCards.length;
         for (let i = 0; i < albumCards.length; i++) {
             album_card = albumCards[i].getElementsByClassName("album-card");
-            if (window.innerWidth >= 1200) {
+            if(window.innerWidth >= 1200) {
                 [...album_card].forEach((item) => item.style.display = "inline-block");
-            } else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+            } else if (window.innerWidth >= 992 && window.innerWidth < 1200) {//large
                 album_card[4].style.display = "none";
                 album_card[3].style.display = "inline-block";
                 album_card[2].style.display = "inline-block";
@@ -524,7 +517,6 @@ $(document).on('click', '#backbutton', backbutton);
     });
 
     // On scroll search results should not be displayed
-
     window.onscroll = () => {
         search_results.style.display = "none";
         if (searchBar.value.length === 0)
@@ -545,20 +537,17 @@ $(document).on('click', '#backbutton', backbutton);
     });
 
     // if language is selected
-
     //	lang.addEventListener('mouseover', () => {
     //    document.querySelector('.lang-select').classList.remove("shake");
     //	});
-
-
-
     // on resizing window
 
 
     var resize_mob = () => {
         let firstRow = document.querySelector('.first-row');
         let recent = document.querySelector('.recent');
-        if (window.innerWidth < 992) {
+        if (window.innerWidth < 992){
+			//placing recent between trending and main divs 
             firstRow.insertBefore(recent, firstRow.firstElementChild.nextSibling);
             document.querySelector('.albums-list').style.display = "none";
             document.querySelector('.recent').style.display = "none";
@@ -566,6 +555,7 @@ $(document).on('click', '#backbutton', backbutton);
             mobRecent.style.display = "block";
 
         } else {
+			//remove when window restored to larger size
             recent.remove();
             firstRow.appendChild(recent);
             document.querySelector('.albums-list').style.display = "block";
@@ -607,9 +597,7 @@ $(document).on('click', '#backbutton', backbutton);
     })
 
 
-    // added after sending file on 26th july added 2 variables above 
-    // albumdiv and recentdiv
-
+//when we r in mobile when we clicked a album albums should be closed and album should be opened
     albumsdiv.addEventListener('click', (event) => {
         const isbutton = event.target.nodeName === "BUTTON";
         if (isbutton && window.innerWidth < 992) {
@@ -619,6 +607,7 @@ $(document).on('click', '#backbutton', backbutton);
         }
     });
 
+//similar to albums
     recentdiv.addEventListener('click', (event) => {
         const isbutton = event.target.nodeName === "BUTTON";
         if (isbutton && window.innerWidth < 992) {
@@ -629,6 +618,7 @@ $(document).on('click', '#backbutton', backbutton);
     })
 
     lang.addEventListener('change', changeContent);
+
     [...card].forEach((item, index) => {
         item.addEventListener('click', () => {
             const language = card[index].parentElement.parentElement.classList[1];
@@ -638,6 +628,7 @@ $(document).on('click', '#backbutton', backbutton);
         })
 
     });
+
 
     resize_mob();
     displayCards();

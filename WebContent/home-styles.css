@@ -1,16 +1,14 @@
-  body {
+body {
       background-color: black;
       color: white;
       font-family: 'Karla', sans-serif;
   }
 button {
-	
       border: 0px;
       background-color: transparent;
       color: white;
   }
   
-
   .dropdown-menu {
       background-color: #343a40;
   }
@@ -58,7 +56,7 @@ button {
   }
   
   .select-language {
-      align-items: center;
+      align-items: center;	
       background-color: transparent;
       color: white;
       border: 0px;
@@ -196,6 +194,7 @@ button {
   overflow-x:hidden;
   height:250px;
   }
+  
   #songs:last-child{
   padding-bottom:50px;
   }
@@ -287,9 +286,11 @@ button {
       width: 60%;
   }
   
+  
   i {
       color: white;
   }
+  
   
   .control-buttons button,
   .other-controls button {
@@ -510,11 +511,7 @@ input[type="range"] {
   width : 40%;
   }
   
-  
-  
-  /* NEW chnaged */
-  /* shake */
-  
+ 
   .album-cards li {
       list-style: none;
       color: white;
@@ -522,7 +519,6 @@ input[type="range"] {
       width: 18%;
       margin: 5px;
       animation:normal1 3s 1;
-      
       padding: 5px;
   }
   
@@ -538,7 +534,7 @@ input[type="range"] {
   }
   
   
-  .lang-heading {
+/*   .lang-heading {
       margin: 5px;
       padding: 5px;
       display: flex;
@@ -553,7 +549,8 @@ input[type="range"] {
   .lang-heading p {
       text-align: end;
   }
-  
+   */
+   
  #album-name button img {
       border-radius: 8px;
       width:100%;
@@ -606,51 +603,7 @@ input[type="range"] {
       }
   }
   
-  
-  
-  /* shake */
-  
-  .shake {
-      animation: shake 0.5s 0.1s infinite;
-  }
-  
-  
-  @keyframes shake {
-      0% {
-          transform: translate(1px, 1px) rotate(0deg);
-      }
-      10% {
-          transform: translate(-1px, -2px) rotate(-1deg);
-      }
-      20% {
-          transform: translate(-3px, 0px) rotate(1deg);
-      }
-      30% {
-          transform: translate(3px, 2px) rotate(0deg);
-      }
-      40% {
-          transform: translate(1px, -1px) rotate(1deg);
-      }
-      50% {
-          transform: translate(-1px, 2px) rotate(-1deg);
-      }
-      60% {
-          transform: translate(-3px, 1px) rotate(0deg);
-      }
-      70% {
-          transform: translate(3px, 1px) rotate(-1deg);
-      }
-      80% {
-          transform: translate(-1px, -1px) rotate(1deg);
-      }
-      90% {
-          transform: translate(1px, 2px) rotate(0deg);
-      }
-      100% {
-          transform: translate(1px, -2px) rotate(-1deg);
-      }
-  }
-   /* Media queries */
+    /* Media queries */
   
   @media screen and (max-width: 991px) {
       .albums-list {
